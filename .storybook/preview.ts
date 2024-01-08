@@ -1,4 +1,5 @@
-// import '../src/components/bootstrap.scss';
+import { addons } from '@storybook/addons';
+import { UPDATE_GLOBALS, STORY_ARGS_UPDATED } from '@storybook/core-events';
 
 export default {
   parameters: {
@@ -30,3 +31,30 @@ export const parameters = {
     },
   },
 };
+
+const channel = addons.getChannel();
+
+const storyListener = (args) => {
+  if (args.args.theme) {
+    console.log("theme: ", args.args.theme);
+    const theme = args.args.theme;
+    const background = theme === 'light' ? 'light' : 'dark';
+
+    channel.emit(UPDATE_GLOBALS, {
+      globals: {
+        theme,
+        backgrounds: {
+          name: background,
+          value: background === 'light' ? '#FFFFFF' : '#1D3152',
+        },
+      },
+    });
+  }
+};
+
+function setupBackgroundListener() {
+  channel.removeListener(STORY_ARGS_UPDATED, storyListener);
+  channel.addListener(STORY_ARGS_UPDATED, storyListener);
+}
+
+setupBackgroundListener();

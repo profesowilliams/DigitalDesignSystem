@@ -4,7 +4,19 @@ import { Checkbox } from '../index';
 export default {
   title: 'components/Checkbox',
   component: Checkbox,
-  argTypes: {},
+  args: {
+    disabled: false,
+  },
+  argTypes: {
+    theme: {
+      options: ['light', 'dark'],
+      control: { type: 'radio' },
+    },
+    disabled: {
+      options: [true, false],
+      control: { type: 'boolean' },
+    }
+  },
 };
 
 interface Item {
@@ -40,11 +52,21 @@ const Template: React.FC = (args) => {
   );
 };
 
+const Singleton: React.FC = (args) => {
+  const [value, setValue] = useState < string[] > (['2']);
+
+  return (
+    <>
+      <Checkbox {...args} value={value} onChange={setValue} />
+    </>
+  );
+};
+
 export const Light: React.FC = Template.bind({});
 Object.assign(Light, {
   args: {
     theme: 'light',
-    data, // Assuming 'data' is defined elsewhere in your code
+    data,
     type: 'checkbox',
     inline: true,
   },
@@ -57,11 +79,66 @@ export const Dark: React.FC = Template.bind({});
 Object.assign(Dark, {
   args: {
     theme: 'dark',
-    data, // Assuming 'data' is defined elsewhere in your code
+    data,
     type: 'checkbox',
     inline: true,
   },
   parameters: {
     backgrounds: { default: 'dark' },
   },
+});
+
+
+export const Selected: React.FC = Singleton.bind({});
+Object.assign(Selected, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+        checked: true,
+      },
+    ],
+    type: 'checkbox',
+    inline: true,
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
+
+export const Disabled: React.FC = Singleton.bind({});
+Object.assign(Disabled, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+      },
+    ],
+    disabled: true,
+    type: 'checkbox',
+    inline: true,
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
+
+export const Indeterminate: React.FC = Singleton.bind({});
+Object.assign(Indeterminate, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+        indeterminate: true,
+      },
+    ],
+    type: 'checkbox',
+    inline: true,
+  }
 });

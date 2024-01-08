@@ -9,6 +9,7 @@ interface CheckboxProps {
   data: Array<{
     id: string;
     name: string;
+    checked?: boolean;
     indeterminate?: boolean;
     disabled?: boolean;
   }>;
@@ -50,7 +51,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ data, name = 'checkbox-group-name',
           inline={inline}
           name={name}
           disabled={item.disabled}
-          checked={!!objectValue[item.id]}
+          checked={!!objectValue[item.id] || !!item.checked} // Use item.checked to determine if it's checked
           onChange={handleOnClick(item.id)}
           ref={(el) => checkboxRefs.current[index] = el}
           data-theme={theme} // Set the data-theme attribute
