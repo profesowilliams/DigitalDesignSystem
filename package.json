@@ -7,7 +7,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy": "storybook build && gh-pages -d storybook-static",
-    "chromatic": "npx chromatic --project-token=chpt_714dbe65cb8add7",
+    "chromatic": "npx chromatic",
     "build": "npm run clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --no-copy-ignored"
   },
   "files": [
