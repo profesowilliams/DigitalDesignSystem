@@ -89,6 +89,45 @@ Object.assign(Dark, {
 });
 
 
+export const Unselected: React.FC = Singleton.bind({});
+Object.assign(Unselected, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+        checked: false,
+      },
+    ],
+    type: 'checkbox',
+    inline: true,
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
+
+export const DisabledUnselected: React.FC = Singleton.bind({});
+Object.assign(DisabledUnselected, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+        checked: false,
+      },
+    ],
+    disabled: true,
+    type: 'checkbox',
+    inline: true,
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
+
 export const Selected: React.FC = Singleton.bind({});
 Object.assign(Selected, {
   args: {
@@ -108,14 +147,15 @@ Object.assign(Selected, {
   },
 });
 
-export const Disabled: React.FC = Singleton.bind({});
-Object.assign(Disabled, {
+export const DisabledSelected: React.FC = Singleton.bind({});
+Object.assign(DisabledSelected, {
   args: {
     theme: 'light',
     data: [
       {
         id: '1',
         name: 'Label',
+        checked: true,
       },
     ],
     disabled: true,
@@ -140,5 +180,28 @@ Object.assign(Indeterminate, {
     ],
     type: 'checkbox',
     inline: true,
-  }
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
+
+export const DisabledIndeterminate: React.FC = Singleton.bind({});
+Object.assign(DisabledIndeterminate, {
+  args: {
+    theme: 'light',
+    data: [
+      {
+        id: '1',
+        name: 'Label',
+        indeterminate: true,
+      },
+    ],
+    disabled: true,
+    type: 'checkbox',
+    inline: true,
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
 });
