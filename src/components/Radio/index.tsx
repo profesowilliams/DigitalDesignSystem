@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
-
+import './radio.scss';
 interface RadioItem {
   id: string;
   name: string;
