@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+import { Flyout, Button } from '../index';
+
+export default {
+  title: 'components/Flyout',
+  component: Flyout,
+  argTypes: {},
+};
+
+interface FlyoutProps {
+  title: string;
+  show: boolean;
+}
+
+const Template: React.FC<FlyoutProps> = (args) => {
+  const [show, setShow] = useState<boolean>(args.show);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Open
+      </Button>
+      <Flyout {...args} show={show} onHide={handleClose}>
+        Some text as a placeholder. In real life, you can have the elements you have chosen. Like text, images, lists, etc.
+      </Flyout>
+    </>
+  );
+};
+
+export const _Flyout = Template.bind({});
+_Flyout.args = {
+  title: 'Flyout',
+  show: true
+};
