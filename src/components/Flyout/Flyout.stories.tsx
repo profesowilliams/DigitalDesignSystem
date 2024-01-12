@@ -4,7 +4,16 @@ import { Flyout, Button } from '../index';
 export default {
   title: 'components/Flyout',
   component: Flyout,
-  argTypes: {},
+  argTypes: {
+    placement: {
+      options: ['start', 'end'],
+      control: { type: 'inline-radio' },
+    },
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'inline-radio' },
+    },
+  },
 };
 
 interface FlyoutProps {
@@ -33,5 +42,7 @@ const Template: React.FC<FlyoutProps> = (args) => {
 export const _Flyout = Template.bind({});
 _Flyout.args = {
   title: 'Flyout',
-  show: true
+  placement: 'start',
+  show: true,
+  size: 'md',
 };

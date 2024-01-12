@@ -4,7 +4,15 @@ import { Modal, Button } from '../index';
 export default {
   title: 'components/Modal',
   component: Modal,
-  argTypes: {},
+  args: {
+    size: 'md',
+  },
+  argTypes: {
+    size: {
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'inline-radio' },
+    },
+  },
 };
 
 interface ModalProps {

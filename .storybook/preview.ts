@@ -36,7 +36,6 @@ const channel = addons.getChannel();
 
 const storyListener = (args) => {
   if (args.args.theme) {
-    console.log("theme: ", args.args.theme);
     const theme = args.args.theme;
     const background = theme === 'light' ? 'light' : 'dark';
 

@@ -19,10 +19,11 @@ export * from './Masthead'; /* navbars */
 // export * from './Notification';
 export * from './Radio';
 // export * from './Slider';
-export * from './Switch';
+// export * from './Switch';
+export * from './Toggle';
 // export * from './Tabs';
 // export * from './TextField';
-// export * from './Tooltip';
+export * from './Tooltip';
 
 export {
   Form,

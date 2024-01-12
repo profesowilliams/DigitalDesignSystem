@@ -3,7 +3,7 @@ import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import _keyBy from 'lodash/keyBy';
-import './switch.scss';
+import './toggle.scss';
 
 interface SwitchProps {
   data: {
@@ -87,7 +87,7 @@ Switch.propTypes = {
 };
 
 export default React.memo(Switch);
-export { Switch };
+export { Switch as Toggle };
 
 // const TdsSwitch = r2wc(Switch);
 // customElements.define('tds-switch', TdsSwitch);

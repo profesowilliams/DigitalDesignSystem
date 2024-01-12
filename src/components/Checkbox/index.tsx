@@ -17,12 +17,12 @@ interface CheckboxProps {
   inline?: boolean;
   value: string[];
   onChange: (value: string[], event: React.ChangeEvent<HTMLInputElement>) => void;
-  theme?: 'light' | 'dark';
+  theme: 'light' | 'dark'; // Add a theme prop
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ data, name = 'checkbox-group-name', inline = true, value, onChange, theme = 'light', ...props }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ data, name = 'checkbox-group-name', inline = true, value, onChange, theme, ...props }) => {
   const objectValue = useMemo(() => _keyBy(value), [value]);
-  const checkboxRefs = useRef < (HTMLInputElement | null)[] > (new Array(data.length).fill(null));
+  const checkboxRefs = useRef<(HTMLInputElement | null)[]>(new Array(data.length).fill(null));
 
   useEffect(() => {
     data.forEach((item, index) => {
@@ -42,11 +42,12 @@ const Checkbox: React.FC<CheckboxProps> = ({ data, name = 'checkbox-group-name',
   };
 
   return (
-    <div className="mb-3">
+    <div className="mb-3" data-bs-theme={theme}> {/* Add the data-bs-theme attribute */}
       {data.map((item, index) => (
         <Form.Check
           key={item.id}
           id={item.id}
+          aria-label={item.name}
           label={item.name}
           inline={inline}
           name={name}
@@ -54,7 +55,6 @@ const Checkbox: React.FC<CheckboxProps> = ({ data, name = 'checkbox-group-name',
           checked={!!objectValue[item.id] || !!item.checked} // Use item.checked to determine if it's checked
           onChange={handleOnClick(item.id)}
           ref={(el) => checkboxRefs.current[index] = el}
-          data-theme={theme} // Set the data-theme attribute
           {...props}
         />
       ))}
@@ -68,7 +68,7 @@ Checkbox.defaultProps = {
   inline: true,
   value: [],
   onChange: () => { },
-  theme: 'light',
+  theme: 'light', // Provide a default theme
 };
 
 Checkbox.propTypes = {
@@ -82,7 +82,7 @@ Checkbox.propTypes = {
   inline: PropTypes.bool,
   value: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
-  theme: PropTypes.oneOf(['light', 'dark']),
+  theme: PropTypes.oneOf(['light', 'dark']), // Specify theme prop type
 };
 
 export default React.memo(Checkbox);

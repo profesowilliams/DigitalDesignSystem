@@ -2,6 +2,7 @@ import React from 'react';
 import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Offcanvas } from 'react-bootstrap';
+import classnames from 'classnames';
 import './index.scss';
 
 const { Header, Title, Body } = Offcanvas;
@@ -15,20 +16,28 @@ interface FlyoutProps {
   scroll?: boolean;
   backdropClassName?: string;
   onHide?: () => void;
+  size?: 'xl' | 'xxl' | 'md' | 'sm' | 'lg';
 }
 
-const Flyout: React.FC<FlyoutProps> = ({ title, children, ...props }) => {
+const Flyout: React.FC<FlyoutProps> = ({ title, children, size, ...props }) => {
+  const offcanvasClassName = classnames('offcanvas', {
+    'offcanvas-xl': size === 'xl',
+    'offcanvas-xxl': size === 'xxl',
+    'offcanvas-md': size === 'md',
+    'offcanvas-sm': size === 'sm',
+    'offcanvas-lg': size === 'lg',
+  });
+
   return (
-    <Offcanvas {...props}>
+    <Offcanvas {...props} className={offcanvasClassName}>
       <Header closeButton>
         <Title>{title}</Title>
       </Header>
-      <Body>
-        {children}
-      </Body>
+      <Body>{children}</Body>
     </Offcanvas>
   );
 };
+
 
 Flyout.defaultProps = {
   show: false,
@@ -39,6 +48,7 @@ Flyout.defaultProps = {
   scroll: false,
   backdropClassName: 'canvas-backdrop',
   onHide: () => { },
+  size: 'md',
 };
 
 Flyout.propTypes = {
@@ -50,6 +60,7 @@ Flyout.propTypes = {
   scroll: PropTypes.bool,
   backdropClassName: PropTypes.string,
   onHide: PropTypes.func,
+  size: PropTypes.oneOf(['xl', 'xxl', 'md', 'sm', 'lg']),
 };
 
 export default Flyout;

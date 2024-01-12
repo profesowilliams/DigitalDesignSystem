@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Switch } from '../index';
+import { Toggle } from '../index';
 
 export default {
-  title: 'components/Switch',
-  component: Switch,
+  title: 'components/Toggle',
+  component: Toggle,
   argTypes: {},
 };
 
@@ -18,7 +18,7 @@ const data = [
   },
 ];
 
-interface SwitchProps {
+interface ToggleProps {
   theme: 'light' | 'dark';
   type: 'switch';
   inline: true;
@@ -27,18 +27,18 @@ interface SwitchProps {
   disabled?: string;
 }
 
-const Template: React.FC<SwitchProps> = (args) => {
+const Template: React.FC<ToggleProps> = (args) => {
   const [value, setValue] = useState<string[]>(['2']);
 
   return (
     <>
-      <Switch {...args} value={value} onChange={setValue} />
-      <Switch {...args} value={value} onChange={setValue} disabled="disabled" />
+      <Toggle {...args} value={value} onChange={setValue} />
+      <Toggle {...args} value={value} onChange={setValue} disabled="disabled" />
     </>
   );
 };
 
-export const Light: React.FC<SwitchProps> = Template.bind({});
+export const Light: React.FC<ToggleProps> = Template.bind({});
 Object.assign(Light, {
   args: {
     theme: 'light',
@@ -51,7 +51,7 @@ Object.assign(Light, {
   },
 });
 
-export const Dark: React.FC<SwitchProps> = Template.bind({});
+export const Dark: React.FC<ToggleProps> = Template.bind({});
 Object.assign(Dark, {
   args: {
     theme: 'dark',

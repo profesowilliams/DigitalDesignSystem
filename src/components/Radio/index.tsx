@@ -3,6 +3,7 @@ import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 import './radio.scss';
+
 interface RadioItem {
   id: string;
   name: string;
@@ -32,7 +33,7 @@ const Radio: React.FC<RadioProps> = ({ data = [], name = 'checkbox-group-name', 
           inline={inline}
           name={name}
           disabled={item.disabled}
-          checked={value === item.id}
+          checked={value === item.id} // Set checked explicitly
           type="radio"
           onChange={handleOnClick(item.id)}
           {...props}
@@ -58,8 +59,8 @@ Radio.propTypes = {
   onChange: PropTypes.func,
 };
 
-//const TdsRadio = r2wc(Radio);
-//customElements.define("tds-radio", TdsRadio);
+const TdsRadio = r2wc(Radio);
+customElements.define("tds-radio", TdsRadio);
 
 export default Radio;
 export { Radio };

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import PropTypes, { bool, func, node, oneOf, string } from 'prop-types';
 import { Modal as BModal, Button } from 'react-bootstrap';
-import './index.css';
+import './modal.scss';
 
 const modalSize = {
   SM: 'sm',
@@ -40,10 +40,10 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   let footerComponent = (
     <>
-      <Button className="button-cancel" variant="secondary" size="sm" onClick={onCancel}>
+      <Button className="button-cancel" variant="secondary" size="md" onClick={onCancel}>
         Cancel
       </Button>
-      <Button className="button-save" variant="primary" size="sm" onClick={onSave}>
+      <Button className="button-save" variant="primary" size="md" onClick={onSave}>
         Save
       </Button>
     </>
@@ -76,7 +76,7 @@ Modal.defaultProps = {
   footer: '',
   show: false,
   backdrop: true,
-  size: 'LG',
+  size: 'lg',
   centered: true,
   fullscreen: false,
   scrollable: false,
