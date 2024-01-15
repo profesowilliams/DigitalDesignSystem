@@ -22,7 +22,7 @@ export * from './Radio';
 // export * from './Switch';
 export * from './Toggle';
 // export * from './Tabs';
-// export * from './TextField';
+export * from './TextField';
 export * from './Tooltip';
 
 export {

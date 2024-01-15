@@ -5,7 +5,12 @@ import { Form } from 'react-bootstrap';
 export default {
   title: 'components/Radio',
   component: Radio,
-  argTypes: {},
+  argTypes: {
+        theme: {
+      options: ['light', 'dark'],
+      control: { type: 'radio' },
+    },
+  },
 };
 
 interface RadioItem {

@@ -4,7 +4,18 @@ import { Accordion } from '../index';
 export default {
   title: 'components/Accordion',
   component: Accordion,
-  argTypes: {},
+  argTypes: {
+    variation: {
+      options: ['top', 'bottom', 'topbottom', 'full'],
+      control: { type: 'select' },
+      defaultValue: 'top',
+    },
+    orientation: {
+      options: ['right', 'left'],
+      control: { type: 'select' },
+      defaultValue: 'right',
+    },
+  },
 };
 
 interface AccordionItem {
@@ -46,15 +57,21 @@ const options: AccordionItem[] = [
   },
 ];
 
-const Template: React.FC<{ options: AccordionItem[]; defaultActiveKey: string }> = ({
-  options,
-  defaultActiveKey,
-}) => {
-  return <Accordion options={options} defaultActiveKey={defaultActiveKey} />;
+const Template: React.FC<{
+  options: AccordionItem[];
+  defaultActiveKey: string;
+  orientation: "left" | "right"; // Add orientation prop
+  variation: "top" | "bottom" | "topbottom" | "full"; // Add variation prop
+}> = ({ options, defaultActiveKey, orientation, variation }) => {
+  return <Accordion options={options} defaultActiveKey={defaultActiveKey} orientation={orientation} variation={variation} />;
 };
+
 
 export const _Accordion = Template.bind({});
 _Accordion.args = {
   options,
   defaultActiveKey: '1',
+  orientation: 'left', // Add the orientation prop here
+  variation: 'top', // Add the variation prop here
 };
+

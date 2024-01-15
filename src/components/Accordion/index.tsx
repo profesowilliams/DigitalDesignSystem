@@ -2,6 +2,7 @@ import React from 'react';
 import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Accordion as BAccordion } from 'react-bootstrap';
+import './accordion.scss';
 
 const { Item, Header, Body } = BAccordion;
 
@@ -13,11 +14,14 @@ interface AccordionProps {
   }>;
   defaultActiveKey: string;
   flush: boolean;
+  orientation: "left" | "right"; // Add the orientation prop with the specified values
+  variation: "top" | "bottom" | "topbottom" | "full"; // Add the variation prop with the specified values
 }
 
-const Accordion: React.FC<AccordionProps> = ({ options, ...props }) => {
+
+const Accordion: React.FC<AccordionProps> = ({ options, orientation, variation, ...props }) => {
   return (
-    <BAccordion {...props}>
+    <BAccordion {...props} data-bs-orientation={orientation} data-bs-variation={variation}>
       {options.map((item) => (
         <Item key={item.id} eventKey={item.id}>
           <Header>{item.title}</Header>
@@ -32,6 +36,8 @@ Accordion.defaultProps = {
   options: [],
   defaultActiveKey: '',
   flush: false,
+  orientation: "right",
+  variation: "top",
 };
 
 export default Accordion;

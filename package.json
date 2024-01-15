@@ -82,7 +82,6 @@
     "@storybook/addon-essentials": "^7.6.3",
     "@storybook/addon-interactions": "^7.6.3",
     "@storybook/addon-links": "^7.6.3",
-    "@storybook/addon-mdx-gfm": "^7.6.3",
     "@storybook/addon-onboarding": "^1.0.9",
     "@storybook/addon-storyshots": "^7.6.3",
     "@storybook/addons": "^7.6.7",

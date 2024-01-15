@@ -11,6 +11,7 @@ interface TooltipProps {
   flip?: boolean;
   placement?: keyof typeof tooltipPlacements;
   showByDefault?: boolean; // Add the showByDefault prop
+  variant?: string;
 }
 
 const tooltipPlacements = {
@@ -75,6 +76,7 @@ Tooltip.defaultProps = {
   title: '',
   flip: true,
   placement: undefined,
+  variant: 'plain',
 };
 
 Tooltip.propTypes = {
@@ -84,6 +86,7 @@ Tooltip.propTypes = {
   placement: PropTypes.oneOf(Object.values(tooltipPlacements)),
   containerClassName: PropTypes.string,
   showByDefault: PropTypes.bool, // Add prop type validation
+  variant: PropTypes.string,
 };
 
 export default Tooltip;

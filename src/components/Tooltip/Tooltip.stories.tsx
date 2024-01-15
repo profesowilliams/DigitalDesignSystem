@@ -12,6 +12,10 @@ export default {
       options: ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'],
       control: { type: 'select' },
     },
+    variant: {
+      options: ['plain', 'rich'],
+      control: { type: 'inline-radio' },
+    },
   },
 };
 
@@ -29,18 +33,19 @@ const Template: React.FC<TooltipProps> = (args) => {
 export const _Tooltip = Template.bind({});
 _Tooltip.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: undefined,
   showByDefault: false,
   show: 'true',
   trigger: 'hover',
+  variation: 'plain',
 };
 
 export const TopStart = Template.bind({});
 TopStart.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'top-start',
   showByDefault: false,
@@ -51,7 +56,7 @@ TopStart.args = {
 export const Top = Template.bind({});
 Top.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'top',
   showByDefault: false,
@@ -62,7 +67,7 @@ Top.args = {
 export const TopEnd = Template.bind({});
 TopEnd.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'top-end',
   showByDefault: false,
@@ -73,7 +78,7 @@ TopEnd.args = {
 export const RightStart = Template.bind({});
 RightStart.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'right-start',
   showByDefault: false,
@@ -84,7 +89,7 @@ RightStart.args = {
 export const Right = Template.bind({});
 Right.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'right',
   showByDefault: false,
@@ -95,7 +100,7 @@ Right.args = {
 export const RightEnd = Template.bind({});
 RightEnd.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'right-end',
   showByDefault: false,
@@ -106,7 +111,7 @@ RightEnd.args = {
 export const BottomStart = Template.bind({});
 BottomStart.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'bottom-start',
   showByDefault: false,
@@ -117,7 +122,7 @@ BottomStart.args = {
 export const Bottom = Template.bind({});
 Bottom.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'bottom',
   showByDefault: false,
@@ -128,7 +133,7 @@ Bottom.args = {
 export const BottomEnd = Template.bind({});
 BottomEnd.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'bottom-end',
   showByDefault: false,
@@ -139,7 +144,7 @@ BottomEnd.args = {
 export const LeftStart = Template.bind({});
 LeftStart.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'left-start',
   showByDefault: false,
@@ -150,7 +155,7 @@ LeftStart.args = {
 export const Left = Template.bind({});
 Left.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'left',
   showByDefault: false,
@@ -161,10 +166,24 @@ Left.args = {
 export const LeftEnd = Template.bind({});
 LeftEnd.args = {
   children: <Button>Hover to see</Button>,
-  title: 'Tooltip Title',
+  title: 'A description goes here.',
   flip: true,
   placement: 'left-end',
   showByDefault: false,
   show: 'true',
   trigger: 'hover',
+};
+
+export const RichTopStart = Template.bind({});
+RichTopStart.args = {
+  // consider passing title, description, and action as props
+  // title should only be used on variant rich
+  children: <Button>Hover to see</Button>,
+  title: '<div class="h9">Title</div><div class="p3">A description goes here.</div><div><a href="#">Action</a></div>',
+  flip: true,
+  placement: 'left-end',
+  showByDefault: false,
+  show: 'true',
+  trigger: 'hover',
+  variant: 'rich',
 };

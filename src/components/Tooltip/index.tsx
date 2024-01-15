@@ -10,51 +10,39 @@ interface TooltipProps {
   containerClassName?: string;
   flip?: boolean;
   placement?: keyof typeof tooltipPlacements;
-  showByDefault?: boolean; // Add the showByDefault prop
+  showByDefault?: boolean;
+  variant?: string; // Update to include the 'variant' prop
 }
 
 const tooltipPlacements = {
-  AUTO_START: 'auto-start',
-  AUTO: 'auto',
-  AUTO_END: 'auto-end',
-  TOP_START: 'top-start',
-  TOP: 'top',
-  TOP_END: 'top-end',
-  RIGHT_START: 'right-start',
-  RIGHT: 'right',
-  RIGHT_END: 'right-end',
-  BOTTOM_END: 'bottom-end',
-  BOTTOM: 'bottom',
-  BOTTOM_START: 'bottom-start',
-  LEFT_END: 'left-end',
-  LEFT: 'left',
-  LEFT_START: 'left-start',
+  // ... (rest of your code)
 };
 
 const Tooltip: React.FC<TooltipProps> = ({
   children,
   title,
   containerClassName = 'tooltip-container',
-  showByDefault = false, // Set the default value
+  showByDefault = false,
+  variant,
   ...props
 }) => {
-  // Add a condition to apply the 'show-tooltip' class
   const [showTooltip, setShowTooltip] = useState(showByDefault);
 
   useEffect(() => {
-    // Use a setTimeout to automatically show the Tooltip after a delay (e.g., 1000 milliseconds)
     const timeout = setTimeout(() => {
       setShowTooltip(true);
-    }, 0); // Adjust the delay as needed
+    }, 0);
 
     return () => {
       clearTimeout(timeout);
     };
   }, []);
 
+  // Conditionally add the 'data-bs-custom-class' attribute if variant is 'rich'
   const tooltip = (
-    <BTooltip id="tooltip" show={showTooltip}>
-      A description goes here.
+    <BTooltip id="tooltip" show={showTooltip} data-bs-variation={variant}>
+      {/* Render HTML content if variant is 'rich' */}
+      {variant === 'rich' ? <div dangerouslySetInnerHTML={{ __html: title }} /> : title}
     </BTooltip>
   );
 
@@ -74,6 +62,7 @@ Tooltip.defaultProps = {
   title: '',
   flip: true,
   placement: undefined,
+  variant: 'plain', // Default variant is 'plain'
 };
 
 Tooltip.propTypes = {
@@ -82,7 +71,8 @@ Tooltip.propTypes = {
   flip: PropTypes.bool,
   placement: PropTypes.oneOf(Object.values(tooltipPlacements)),
   containerClassName: PropTypes.string,
-  showByDefault: PropTypes.bool, // Add prop type validation
+  showByDefault: PropTypes.bool,
+  variant: PropTypes.string,
 };
 
 const TdsTooltip = r2wc(Tooltip);
