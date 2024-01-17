@@ -2,7 +2,7 @@ import React from 'react';
 import r2wc from "@r2wc/react-to-web-component";
 import PropTypes from 'prop-types';
 import { Button as BButton, Spinner } from 'react-bootstrap';
-import './index.scss';
+import './button.scss';
 
 interface ButtonProps {
   label?: string;

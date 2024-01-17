@@ -54,8 +54,14 @@ const Template: React.FC = (args) => {
   );
 };
 
-export const _Radio = Template.bind({});
-_Radio.args = {
+export const Light = Template.bind({});
+Light.args = {
+  data,
+  inline: true
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
   data,
   inline: true
 };

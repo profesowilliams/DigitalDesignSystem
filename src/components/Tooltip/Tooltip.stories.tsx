@@ -39,7 +39,7 @@ _Tooltip.args = {
   showByDefault: false,
   show: 'true',
   trigger: 'hover',
-  variation: 'plain',
+  variant: 'plain',
 };
 
 export const TopStart = Template.bind({});

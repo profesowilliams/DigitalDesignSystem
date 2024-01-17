@@ -1,7 +1,10 @@
+@use 'sass:map';
+@use '../../styles/abstracts/' as *;
+
 %checkbox {
   .form-check-label {
     opacity: 1;
-    color: var(--Deep-Teal, #003031);
+    color: var(--Deep-Teal, map.get($color-palette, 'deep-teal'));
   }
 
   .form-check-input {

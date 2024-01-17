@@ -1,38 +1,114 @@
-.form-check-input[type='radio'] {
-  --bs-border-color: rgba(0, 87, 88, 1);
-  --bs-border-width: 0.12em;
+%radio {
+  .form-check-input[type='radio'] {
+    --bs-border-color: rgba(0, 87, 88, 1);
+    --bs-border-width: 0.12em;
 
-  &:hover {
-    background-color: rgba(0, 87, 88, 0.1);
-    box-shadow: 0px 0px 0px 3px rgba(0, 87, 88, 0.1);
-    border-color: rgba(0, 87, 88, 0.8);
-  }
+    &:hover {
+      background-color: rgba(0, 87, 88, 0.1);
+      box-shadow: 0px 0px 0px 3px rgba(0, 87, 88, 0.1);
+      border-color: rgba(0, 87, 88, 0.8);
+    }
 
-  &:checked {
-    --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2.6' fill='%23005758'/%3e%3c/svg%3e");
-    background-color: #fff;
-    border-color: #005758;
-    --bs-border-width: 2px;
-  }
-
-  &:disabled {
-    border-color: var(--Cool-Gray-8, #888b8d);
-    filter: none;
-    opacity: 1;
-    pointer-events: none;
-    color: var(--Cool-Gray-8, #888b8d);
-
-    &:checked,
-    &:indeterminate {
-      --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2.6' fill='%23888b8d'/%3e%3c/svg%3e");
+    &:checked {
+      --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2.6' fill='%23005758'/%3e%3c/svg%3e");
       background-color: #fff;
-      border-color: #888b8d;
+      border-color: #005758;
+      --bs-border-width: 2px;
+    }
 
-      &:hover {
-        color: var(--Cool-Gray-8, #888b8d);
-        border-color: var(--Cool-Gray-8, #888b8d);
-        box-shadow: none;
+    &:disabled {
+      border-color: var(--Cool-Gray-8, #888b8d);
+      filter: none;
+      opacity: 1;
+      pointer-events: none;
+      color: var(--Cool-Gray-8, #888b8d);
+
+      &:checked,
+      &:indeterminate {
+        --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2.6' fill='%23888b8d'/%3e%3c/svg%3e");
+        background-color: #fff;
+        border-color: #888b8d;
+
+        &:hover {
+          color: var(--Cool-Gray-8, #888b8d);
+          border-color: var(--Cool-Gray-8, #888b8d);
+          box-shadow: none;
+        }
       }
+    }
+  }
+}
+
+body {
+  @extend %radio;
+}
+
+[data-bs-theme='light'],
+[data-theme='light'] {
+  @extend %radio;
+}
+
+[data-bs-theme='dark'],
+[data-theme='dark'] {
+  .form-check-label {
+    color: var(--White, #ffffff);
+  }
+
+  .form-check-input {
+    --bs-form-check-bg: transparent;
+    --bs-border-color: rgba(255, 255, 255, 1);
+
+    -webkit-appearance: none;
+    appearance: none;
+    background: {
+      color: var(--bs-form-check-bg);
+      image: var(--bs-form-check-bg-image);
+    }
+    border: var(--bs-border-width) solid var(--bs-border-color);
+
+    &:focus {
+      border-color: rgba(255, 255, 255, 1);
+    }
+
+    &:hover {
+      background-color: transparent;
+      box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    &:checked {
+      background-color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1);
+
+      &[type='checkbox'] {
+        --bs-form-check-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%231D3152' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
+      }
+    }
+
+    &[type='checkbox']:indeterminate {
+      --bs-form-check-bg-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%231D3152' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3E%3C/svg%3E");
+      background-color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1);
+    }
+
+    &:disabled {
+      border-color: var(--Cool-Gray-8, #888b8d);
+
+      &:checked,
+      &:indeterminate {
+        background-color: var(--Cool-Gray-8, #888b8d);
+        border-color: var(--Cool-Gray-8, #888b8d);
+
+        &:hover {
+          color: var(--Cool-Gray-8, #888b8d);
+        }
+      }
+    }
+
+    &:disabled ~ .form-check-label,
+    [disabled] ~ .form-check-label & {
+      cursor: default;
+      opacity: 0.5;
     }
   }
 }

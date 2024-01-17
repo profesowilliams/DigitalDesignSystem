@@ -1,15 +1,44 @@
 import React from 'react';
-import { Button, buttonVariant } from '../index';
+import { Button, buttonVariant, buttonSize } from './index';
 
 export default {
   title: 'components/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {},
+  args: {
+    variant: 'primary', // Default variant for the button
+    size: 'sm', // Default size for the button
+    active: false,
+    disabled: false,
+    label: 'Button', // Default label for the button
+  },
+  argTypes: {
+  variant: {
+    options: Object.values(buttonVariant),
+    control: { type: 'select' },
+  },
+  size: {
+    options: Object.values(buttonSize),
+    control: { type: 'select' },
+  },
+  active: {
+    options: [true, false],
+    control: { type: 'boolean' },
+  },
+  disabled: {
+    options: [true, false],
+    control: { type: 'boolean' },
+  },
+  label: {
+    control: { type: 'text' },
+  },
+
+  },
 };
 
+
 interface ButtonProps {
-  variant: buttonVariant;
+  variant: typeof buttonVariant;
   size: string;
   active: boolean;
   disabled: boolean;
