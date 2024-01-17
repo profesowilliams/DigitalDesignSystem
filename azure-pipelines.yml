@@ -4,17 +4,19 @@
 trigger:
   branches:
     include:
-      - main # 👈 Filters the execution to run only on the main branch
-    exclude:
-      - develop # 👈 Excludes the develop branch
+      - main
+      - develop
+    # exclude:
+    #  - develop # 👈 Excludes the develop branch
 
 # 👇 Configures pipeline execution on pull requests
 pr:
   branches:
     include:
       - main # 👈 Filters the execution to run only on the pull requests for the main branch
-    exclude:
-      - develop # 👈 Excludes the pull requests for the develop branch
+      - develop
+    # exclude:
+    #  - develop # 👈 Excludes the pull requests for the develop branch
 
 # Other configurations
 
