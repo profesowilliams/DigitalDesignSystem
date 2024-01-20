@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '../../styles/abstracts/' as *;
+
 .accordion {
   --bs-border-radius: 0.25rem;
   --bs-accordion-color: var(--bs-body-color);
@@ -52,10 +55,6 @@
     }
   }
 
-  .accordion-item:last-of-type .accordion-button.collapsed,
-  .accordion-item:first-of-type .accordion-button {
-  }
-
   &[data-bs-variation='top'] {
     .accordion-item {
       border-radius: var(--bs-border-radius);
@@ -67,7 +66,6 @@
 
     .accordion-button {
       box-shadow: none;
-
       &:hover {
         text-decoration: underline;
         text-underline-offset: 3px;
@@ -86,7 +84,6 @@
 
     .accordion-button {
       box-shadow: none;
-
       &:hover {
         text-decoration: underline;
         text-underline-offset: 3px;
@@ -104,7 +101,6 @@
 
     .accordion-button {
       box-shadow: none;
-
       &:hover {
         text-decoration: underline;
         text-underline-offset: 3px;
@@ -123,14 +119,10 @@
 
     .accordion-button {
       box-shadow: none;
-
       &:hover {
         text-decoration: underline;
         text-underline-offset: 3px;
       }
-    }
-
-    .accordion-item:last-of-type .accordion-button.collapsed {
     }
   }
 }

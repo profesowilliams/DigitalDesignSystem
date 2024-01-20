@@ -1,7 +1,3 @@
-import 'bootstrap/scss/bootstrap.scss';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-// import './custom.scss';
-
 import * as yup from 'yup';
 import * as formik from 'formik';
 

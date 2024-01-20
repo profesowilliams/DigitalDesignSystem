@@ -1,6 +1,6 @@
 import { addons } from '@storybook/addons';
 import { UPDATE_GLOBALS, STORY_ARGS_UPDATED } from '@storybook/core-events';
-import '../src/components/main.scss';
+import 'bootstrap/scss/bootstrap.scss';
 
 export default {
   parameters: {

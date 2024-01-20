@@ -9,7 +9,7 @@
 .btn {
   background: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: none;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
@@ -17,55 +17,22 @@
   font-weight: 400;
   font-size: 1rem;
   height: 3rem;
-  line-height: inherit;
+  line-height: unset;
   min-width: 8.8125rem;
   outline-color: transparent;
   outline-style: solid;
   outline-width: 1px;
   outline-offset: 0;
-  padding: 0.375rem 0.75rem;
+  padding: 12px 20px;
   -webkit-appearance: button;
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-decoration-thickness: initial;
-  text-underline-offset: initial;
+  text-decoration-thickness: inherit;
+  text-underline-offset: inherit;
   text-transform: none;
   vertical-align: middle;
   width: auto;
-  --bs-btn-padding-x: 0.75rem;
-  --bs-btn-padding-y: 0.375rem;
-  --bs-btn-font-family: inherit;
-  --bs-btn-font-size: 1rem;
-  --bs-btn-font-weight: 400;
-  --bs-btn-line-height: 1.5;
-  --bs-btn-color: #212529;
-  --bs-btn-bg: transparent;
-  --bs-btn-border-width: 1px;
-  --bs-btn-border-color: transparent;
-  --bs-btn-border-radius: 0.375rem;
-  --bs-btn-hover-border-color: transparent;
-  --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
-  --bs-btn-disabled-opacity: 0.65;
-  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.5);
-  display: inline-block;
-  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-  font-family: var(--bs-btn-font-family);
-  font-size: var(--bs-btn-font-size);
-  font-weight: var(--bs-btn-font-weight);
-  line-height: var(--bs-btn-line-height);
-  color: var(--bs-btn-color);
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
-  border-radius: var(--bs-btn-border-radius);
-  background-color: var(--bs-btn-bg);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .btn-loading-container .btn-loading-text {
@@ -90,21 +57,325 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
-.btn-primary {
-  --bs-btn-color: var(--carbon, map.get($color-palette, 'carbon'));
-  --bs-btn-bg: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
-  --bs-btn-border-color: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #0b5ed7;
-  --bs-btn-hover-border-color: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
-  --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
-  --bs-btn-active-border-color: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #0d6efd;
-  --bs-btn-disabled-border-color: var(--legacy-ocean, map.get($color-palette, 'legacy-ocean'));
+.apj {
+  [data-bs-theme='light'] {
+    &.btn {
+      &.btn-primary {
+        color: #{map.get($color-palette, 'white')};
+        background-color: #{map.get($color-palette, 'legacy-ocean')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-primary-hover}, #{map.get($color-palette, 'legacy-ocean')};
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-primary-active}, #{map.get($color-palette, 'legacy-ocean')};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+      &.btn-secondary {
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        background: transparent;
+        border: 1px solid #{map.get($color-palette, 'legacy-ocean')};
+
+        &:hover {
+          @include set-opacity('background', map.get($color-palette, 'legacy-ocean'), 0.1);
+          @include set-opacity('border-color', map.get($color-palette, 'legacy-ocean'), 0.1);
+          border: 1px solid;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          border-color: rgb(0 177 226 / 10%);
+          background: rgb(0 177 226 / 10%);
+          border: 1px solid;
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+          border: transparent;
+        }
+      }
+      &.btn-tertiary {
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        background: transparent;
+
+        &:hover {
+          @include set-opacity('background', map.get($color-palette, 'legacy-ocean'), 0.1);
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          border: none;
+        }
+
+        &:active {
+          @include set-opacity('background', map.get($color-palette, 'legacy-ocean'), 0.2);
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+        }
+      }
+      &.btn-filled {
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        background: #{$gradient-filled-bg}, #{map.get($color-palette, 'legacy-ocean')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          background: #{$gradient-filled-hover}, #{map.get($color-palette, 'legacy-ocean')};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          background: #{$gradient-filled-active}, #{map.get($color-palette, 'legacy-ocean')};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+
+      &.btn-link {
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        background: transparent;
+        text-decoration: none;
+        padding-left: 0;
+        padding-right: 0;
+        min-width: unset;
+
+        &:hover {
+          color: #{tint(map.get($color-palette, 'legacy-ocean'), 20%)};
+          background: transparent;
+          border: none;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:active {
+          color: #{shade(map.get($color-palette, 'legacy-ocean'), 20%)};
+          background: transparent;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+        }
+      }
+
+      &.btn-affirmative {
+        color: #{map.get($color-palette, 'white')};
+        background: #{map.get($color-palette, 'forest')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'forest')};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'forest')};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+
+      &.btn-destructive {
+        color: #{map.get($color-palette, 'white')};
+        background: #{map.get($color-palette, 'cherry')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'cherry')};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'white')};
+          background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'cherry')};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+    }
+  }
+
+  [data-bs-theme='dark'] {
+    .btn {
+      .btn-primary {
+        /* Values from the 'dark' theme primary default */
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        background-color: #{map.get($color-palette, 'white')};
+
+        &:hover {
+          @include set-opacity('color', map.get($color-palette, 'white'), 0.85);
+          background: rgb(255 255 255 / 85%), #{map.get($color-palette, 'legacy-ocean')};
+        }
+
+        &:active {
+          @include set-opacity('color', map.get($color-palette, 'white'), 0.7);
+          background: #{rgb(255 255 255 / 70%)}, #{map.get($color-palette, 'legacy-ocean')};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{rgb(228 229 230 / 80%)};
+        }
+      }
+      .btn-secondary {
+        /* Values from the 'dark' theme secondary default */
+        color: #{map.get($color-palette, 'white')};
+        background: transparent;
+        border: 1px solid #{map.get($color-palette, 'legacy-ocean')};
+
+        &:hover {
+          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
+          border: 1px solid #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          border-color: #{rgb(0 177 226 / 10%)};
+          background: #{rgb(0 177 226 / 10%)};
+          border: 1px solid;
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+          border: transparent;
+        }
+      }
+      .btn-tertiary {
+        /* Values from the 'dark' theme tertiary default */
+        color: #{map.get($color-palette, 'white')};
+        background: transparent;
+
+        &:hover {
+          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          border: none;
+        }
+
+        &:active {
+          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.2)};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+        }
+      }
+      .btn-filled {
+        /* Values from the 'dark' theme filled default */
+        color: #{map.get($color-palette, 'white')};
+        background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.2)};
+
+        &:hover {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'legacy-ocean')};
+          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.3)};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+      .btn-link {
+        /* Values from the 'dark' theme link default */
+        color: #{map.get($color-palette, 'white')};
+        background: transparent;
+        text-decoration: none;
+        padding-left: 0;
+        padding-right: 0;
+        min-width: unset;
+
+        &:hover {
+          color: #{tint(map.get($color-palette, 'legacy-ocean'), 20%)};
+          background: transparent;
+          border: none;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:active {
+          color: #{shade(map.get($color-palette, 'legacy-ocean'), 20%)};
+          background: transparent;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: transparent;
+        }
+      }
+      .btn-affirmative {
+        /* Values from the 'dark' theme affirmative default */
+        color: #{map.get($color-palette, 'forest')};
+        background: #{map.get($color-palette, 'white')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'forest')};
+          background: #{rgba(map.get($color-palette, 'forest'), 0.85)};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'forest')};
+          background: #{rgba(map.get($color-palette, 'forest'), 0.7)};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+      .btn-destructive {
+        /* Values from the 'dark' theme destructive default */
+        color: #{map.get($color-palette, 'cherry')};
+        background: #{map.get($color-palette, 'white')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'cherry')};
+          background: #{rgba(map.get($color-palette, 'cherry'), 0.85)};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'cherry')};
+          background: #{rgba(map.get($color-palette, 'cherry'), 0.7)};
+        }
+
+        &:disabled {
+          color: #{map.get($color-palette, 'cool-gray-8')};
+          background: #{map.get($color-palette, 'neutral-gray-2')};
+        }
+      }
+    }
+  }
 }
 
 .btn-secondary {

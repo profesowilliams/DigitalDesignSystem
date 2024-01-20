@@ -1,22 +1,6 @@
 @use 'sass:map';
-@import './colors';
-@import './mixins';
+@use './colors';
+//@import './mixins';
 
 // Define repetitive styles as variables
-$neutral-gray-2: map.get($color-palette, 'neutral-gray-2');
-$cool-gray-8: map.get($color-palette, 'cool-gray-8');
-$legacy-dark-blue: map.get($color-palette, 'legacy-dark-blue');
-$legacy-ocean: map.get($color-palette, 'legacy-ocean');
-$forest: map.get($color-palette, 'forest');
-$cherry: map.get($color-palette, 'cherry');
-$white: map.get($color-palette, 'white');
-$teal: map.get($color-palette, 'teal');
-$gradient-primary-hover: linear-gradient(0deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 20%));
-$gradient-primary-active: linear-gradient(0deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%));
-$gradient-filled-bg: linear-gradient(0deg, rgb(255 255 255 / 90%), rgb(255 255 255 / 90%));
-$gradient-filled-hover: linear-gradient(0deg, rgb(255 255 255 / 80%), rgb(255 255 255 / 80%));
-$gradient-filled-active: linear-gradient(0deg, rgb(255 255 255 / 70%), rgb(255 255 255 / 70%));
-$gradient-affirmative-destructive-hover: linear-gradient(0deg, rgb(0 0 0 / 15%), rgb(0 0 0 / 15%));
-$gradient-affirmative-destructive-active: linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 30%));
-$gradient-tertiary-hover: rgb(255 255 255 / 10%);
-$gradient-tertiary-active: rgb(255 255 255 / 20%);
+
