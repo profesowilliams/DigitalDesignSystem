@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Flyout, Button } from '../index';
+import { Flyout } from '../Flyout';
+import { Button } from '../Button';
 
 export default {
   title: 'components/Flyout',

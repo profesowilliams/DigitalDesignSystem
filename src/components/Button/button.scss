@@ -7,7 +7,7 @@
   justify-content: center;
 }
 .btn {
-  background: transparent;
+  @include set-opacity('background', map.get($color-palette, 'legacy-ocean'), 1);
   border: none;
   border-radius: none;
   box-sizing: border-box;
@@ -57,26 +57,142 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
-.apj {
-  [data-bs-theme='light'] {
+[data-bs-theme='light'] {
+  &[data-bs-color='dark-blue'] {
     &.btn {
       &.btn-primary {
-        color: #{map.get($color-palette, 'white')};
-        background-color: #{map.get($color-palette, 'legacy-ocean')};
+        @include set-opacity('color', map.get($color-palette, 'white'), 1);
+        @include set-opacity('background', map.get($color-palette, 'dark-blue'), 1);
 
         &:hover {
-          color: #{map.get($color-palette, 'white')};
+          @include set-opacity('color', map.get($color-palette, 'white'), 1);
+          background: #{$gradient-primary-hover}, #{map.get($color-palette, 'dark-blue')};
+        }
+
+        &:active {
+          @include set-opacity('color', map.get($color-palette, 'white'), 1);
+          background: #{$gradient-primary-active}, #{map.get($color-palette, 'dark-blue')};
+        }
+
+        &:disabled {
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+        }
+      }
+      &.btn-secondary {
+        color: #{map.get($color-palette, 'dark-blue')};
+        background: transparent;
+        border: 1px solid #{map.get($color-palette, 'dark-blue')};
+
+        &:hover {
+          @include set-opacity('background', map.get($color-palette, 'dark-blue'), 0.1);
+          @include set-opacity('border-color', map.get($color-palette, 'dark-blue'), 0.1);
+          border: 1px solid;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'dark-blue')};
+          @include set-opacity('background', map.get($color-palette, 'dark-blue'), 0.2);
+          @include set-opacity('border-color', map.get($color-palette, 'dark-blue'), 0.2);
+          border: 1px solid;
+        }
+
+        &:disabled {
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          background: transparent;
+          border: 1px solid #{map.get($color-palette, 'cool-gray-8')};
+        }
+      }
+      &.btn-tertiary {
+        color: #{map.get($color-palette, 'dark-blue')};
+        background: transparent;
+
+        &:hover {
+          @include set-opacity('background', map.get($color-palette, 'dark-blue'), 0.1);
+          color: #{map.get($color-palette, 'dark-blue')};
+          border: none;
+        }
+
+        &:active {
+          @include set-opacity('background', map.get($color-palette, 'dark-blue'), 0.2);
+        }
+
+        &:disabled {
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          background: transparent;
+        }
+      }
+      &.btn-filled {
+        color: #{map.get($color-palette, 'dark-blue')};
+        background: #{$gradient-filled-bg}, #{map.get($color-palette, 'dark-blue')};
+
+        &:hover {
+          color: #{map.get($color-palette, 'dark-blue')};
+          background: #{$gradient-filled-hover}, #{map.get($color-palette, 'dark-blue')};
+          border: none;
+        }
+
+        &:active {
+          color: #{map.get($color-palette, 'dark-blue')};
+          background: #{$gradient-filled-active}, #{map.get($color-palette, 'dark-blue')};
+        }
+
+        &:disabled {
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+        }
+      }
+
+      &.btn-link {
+        color: #{map.get($color-palette, 'dark-blue')};
+        background: transparent;
+        text-decoration: none;
+        padding-left: 0;
+        padding-right: 0;
+        min-width: unset;
+
+        &:hover {
+          color: #{tint(map.get($color-palette, 'dark-blue'), 20%)};
+          background: transparent;
+          border: none;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:active {
+          color: #{shade(map.get($color-palette, 'dark-blue'), 20%)};
+          background: transparent;
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+
+        &:disabled {
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  &[data-bs-color='ocean-blue'] {
+    &.btn {
+      &.btn-primary {
+        @include set-opacity('color', map.get($color-palette, 'white'), 1);
+        @include set-opacity('background', map.get($color-palette, 'legacy-ocean'), 1);
+
+        &:hover {
+          @include set-opacity('color', map.get($color-palette, 'white'), 1);
           background: #{$gradient-primary-hover}, #{map.get($color-palette, 'legacy-ocean')};
         }
 
         &:active {
-          color: #{map.get($color-palette, 'white')};
+          @include set-opacity('color', map.get($color-palette, 'white'), 1);
           background: #{$gradient-primary-active}, #{map.get($color-palette, 'legacy-ocean')};
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
         }
       }
       &.btn-secondary {
@@ -98,7 +214,7 @@ button:not(:disabled) {
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
           background: transparent;
           border: transparent;
         }
@@ -118,7 +234,7 @@ button:not(:disabled) {
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
           background: transparent;
         }
       }
@@ -138,8 +254,8 @@ button:not(:disabled) {
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
         }
       }
 
@@ -167,303 +283,243 @@ button:not(:disabled) {
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
           background: transparent;
-        }
-      }
-
-      &.btn-affirmative {
-        color: #{map.get($color-palette, 'white')};
-        background: #{map.get($color-palette, 'forest')};
-
-        &:hover {
-          color: #{map.get($color-palette, 'white')};
-          background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'forest')};
-          border: none;
-        }
-
-        &:active {
-          color: #{map.get($color-palette, 'white')};
-          background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'forest')};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
-        }
-      }
-
-      &.btn-destructive {
-        color: #{map.get($color-palette, 'white')};
-        background: #{map.get($color-palette, 'cherry')};
-
-        &:hover {
-          color: #{map.get($color-palette, 'white')};
-          background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'cherry')};
-          border: none;
-        }
-
-        &:active {
-          color: #{map.get($color-palette, 'white')};
-          background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'cherry')};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
         }
       }
     }
   }
 
-  [data-bs-theme='dark'] {
-    .btn {
-      .btn-primary {
+  &.btn-affirmative {
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    background: #{map.get($color-palette, 'forest')};
+
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'forest')};
+      border: none;
+    }
+
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'forest')};
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+    }
+  }
+
+  &.btn-destructive {
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    background: #{map.get($color-palette, 'cherry')};
+
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      background: #{$gradient-affirmative-destructive-hover}, #{map.get($color-palette, 'cherry')};
+      border: none;
+    }
+
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      background: #{$gradient-affirmative-destructive-active}, #{map.get($color-palette, 'cherry')};
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+    }
+  }
+}
+
+[data-bs-theme='dark'] {
+  &[data-bs-color='dark-blue'] {
+    &.btn {
+      &.btn-primary {
         /* Values from the 'dark' theme primary default */
-        color: #{map.get($color-palette, 'legacy-ocean')};
-        background-color: #{map.get($color-palette, 'white')};
+        color: #{map.get($color-palette, 'dark-blue')};
+        @include set-opacity('background', map.get($color-palette, 'white'), 1);
 
         &:hover {
-          @include set-opacity('color', map.get($color-palette, 'white'), 0.85);
-          background: rgb(255 255 255 / 85%), #{map.get($color-palette, 'legacy-ocean')};
+          @include set-opacity('color', map.get($color-palette, 'dark-blue'), 1);
+          @include set-opacity('background', map.get($color-palette, 'white'), 0.85);
         }
 
         &:active {
-          @include set-opacity('color', map.get($color-palette, 'white'), 0.7);
-          background: #{rgb(255 255 255 / 70%)}, #{map.get($color-palette, 'legacy-ocean')};
+          @include set-opacity('color', map.get($color-palette, 'dark-blue'), 1);
+          @include set-opacity('background', map.get($color-palette, 'white'), 0.7);
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
           background: #{rgb(228 229 230 / 80%)};
         }
       }
-      .btn-secondary {
-        /* Values from the 'dark' theme secondary default */
-        color: #{map.get($color-palette, 'white')};
-        background: transparent;
-        border: 1px solid #{map.get($color-palette, 'legacy-ocean')};
+    }
+  }
+
+  &[data-bs-color='ocean-blue'] {
+    &.btn {
+      &.btn-primary {
+        /* Values from the 'dark' theme primary default */
+        color: #{map.get($color-palette, 'legacy-ocean')};
+        @include set-opacity('background', map.get($color-palette, 'white'), 1);
 
         &:hover {
-          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
-          border: 1px solid #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
+          @include set-opacity('color', map.get($color-palette, 'legacy-ocean'), 1);
+          @include set-opacity('background', map.get($color-palette, 'white'), 0.85);
         }
 
         &:active {
-          color: #{map.get($color-palette, 'legacy-ocean')};
-          border-color: #{rgb(0 177 226 / 10%)};
-          background: #{rgb(0 177 226 / 10%)};
-          border: 1px solid;
+          @include set-opacity('color', map.get($color-palette, 'legacy-ocean'), 1);
+          @include set-opacity('background', map.get($color-palette, 'white'), 0.7);
         }
 
         &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: transparent;
-          border: transparent;
-        }
-      }
-      .btn-tertiary {
-        /* Values from the 'dark' theme tertiary default */
-        color: #{map.get($color-palette, 'white')};
-        background: transparent;
-
-        &:hover {
-          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
-          color: #{map.get($color-palette, 'legacy-ocean')};
-          border: none;
-        }
-
-        &:active {
-          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.2)};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: transparent;
-        }
-      }
-      .btn-filled {
-        /* Values from the 'dark' theme filled default */
-        color: #{map.get($color-palette, 'white')};
-        background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.2)};
-
-        &:hover {
-          color: #{map.get($color-palette, 'legacy-ocean')};
-          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.1)};
-          border: none;
-        }
-
-        &:active {
-          color: #{map.get($color-palette, 'legacy-ocean')};
-          background: #{rgba(map.get($color-palette, 'legacy-ocean'), 0.3)};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
-        }
-      }
-      .btn-link {
-        /* Values from the 'dark' theme link default */
-        color: #{map.get($color-palette, 'white')};
-        background: transparent;
-        text-decoration: none;
-        padding-left: 0;
-        padding-right: 0;
-        min-width: unset;
-
-        &:hover {
-          color: #{tint(map.get($color-palette, 'legacy-ocean'), 20%)};
-          background: transparent;
-          border: none;
-          text-decoration: underline;
-          text-underline-position: under;
-        }
-
-        &:active {
-          color: #{shade(map.get($color-palette, 'legacy-ocean'), 20%)};
-          background: transparent;
-          text-decoration: underline;
-          text-underline-position: under;
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: transparent;
-        }
-      }
-      .btn-affirmative {
-        /* Values from the 'dark' theme affirmative default */
-        color: #{map.get($color-palette, 'forest')};
-        background: #{map.get($color-palette, 'white')};
-
-        &:hover {
-          color: #{map.get($color-palette, 'forest')};
-          background: #{rgba(map.get($color-palette, 'forest'), 0.85)};
-          border: none;
-        }
-
-        &:active {
-          color: #{map.get($color-palette, 'forest')};
-          background: #{rgba(map.get($color-palette, 'forest'), 0.7)};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
-        }
-      }
-      .btn-destructive {
-        /* Values from the 'dark' theme destructive default */
-        color: #{map.get($color-palette, 'cherry')};
-        background: #{map.get($color-palette, 'white')};
-
-        &:hover {
-          color: #{map.get($color-palette, 'cherry')};
-          background: #{rgba(map.get($color-palette, 'cherry'), 0.85)};
-          border: none;
-        }
-
-        &:active {
-          color: #{map.get($color-palette, 'cherry')};
-          background: #{rgba(map.get($color-palette, 'cherry'), 0.7)};
-        }
-
-        &:disabled {
-          color: #{map.get($color-palette, 'cool-gray-8')};
-          background: #{map.get($color-palette, 'neutral-gray-2')};
+          @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+          background: #{rgb(228 229 230 / 80%)};
         }
       }
     }
   }
-}
 
-.btn-secondary {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
-}
+  &.btn-secondary {
+    /* Values from the 'dark' theme secondary default */
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    background: transparent;
+    border: 1px solid #{map.get($color-palette, 'white')};
 
-.btn-filled {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
-}
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.1);
+      border: 1px solid #{rgba(map.get($color-palette, 'white'), 1)};
+    }
 
-.btn-tertiary {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: rgba(255, 255, 255, 0.2);
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
-}
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.2);
+      @include set-opacity('border-color', map.get($color-palette, 'white'), 1);
+      border: 1px solid;
+    }
 
-.btn-link {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
-}
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      background: transparent;
+      border: transparent;
+    }
+  }
+  &.btn-tertiary {
+    /* Values from the 'dark' theme tertiary default */
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    background: transparent;
 
-.btn-affirmative {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
-}
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.1);
+    }
 
-.btn-destructive {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
-  --bs-btn-bg: #005758;
-  --bs-btn-border-color: none;
-  --bs-btn-border-radius: 0.125rem;
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-hover-border-color: none;
-  --bs-btn-focus-shadow-rgb: none;
-  --bs-btn-active-color: var(--bs-white);
-  --bs-btn-active-bg: #{shade-color(#005758, 20%)};
-  --bs-btn-active-border-color: none;
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.2);
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      background: transparent;
+    }
+  }
+  &.btn-filled {
+    /* Values from the 'dark' theme filled default */
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    @include set-opacity('background', map.get($color-palette, 'white'), 0.2);
+
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.1);
+      border: transparent;
+    }
+
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.3);
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+    }
+  }
+  &.btn-link {
+    /* Values from the 'dark' theme link default */
+    @include set-opacity('color', map.get($color-palette, 'white'), 1);
+    background: transparent;
+    text-decoration: none;
+    padding-left: 0;
+    padding-right: 0;
+    min-width: unset;
+
+    &:hover {
+      @include set-opacity('color', map.get($color-palette, 'white'), 0.85);
+      background: transparent;
+      border: none;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+
+    &:active {
+      @include set-opacity('color', map.get($color-palette, 'white'), 0.7);
+      background: transparent;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      background: transparent;
+    }
+  }
+
+  &.btn-affirmative {
+    /* Values from the 'dark' theme affirmative default */
+    color: #{map.get($color-palette, 'forest')};
+    background: #{map.get($color-palette, 'white')};
+
+    &:hover {
+      color: #{map.get($color-palette, 'forest')};
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.85);
+      border: none;
+    }
+
+    &:active {
+      color: #{map.get($color-palette, 'forest')};
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.7);
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+    }
+  }
+  &.btn-destructive {
+    /* Values from the 'dark' theme destructive default */
+    color: #{map.get($color-palette, 'cherry')};
+    background: #{map.get($color-palette, 'white')};
+
+    &:hover {
+      color: #{map.get($color-palette, 'cherry')};
+      background: #{rgba(map.get($color-palette, 'cherry'), 0.85)};
+      border: none;
+    }
+
+    &:active {
+      color: #{map.get($color-palette, 'cherry')};
+      background: #{rgba(map.get($color-palette, 'cherry'), 0.7)};
+    }
+
+    &:disabled {
+      @include set-opacity('color', map.get($color-palette, 'cool-gray-8'), 1);
+      @include set-opacity('background', map.get($color-palette, 'neutral-gray-2'), 1);
+    }
+  }
 }

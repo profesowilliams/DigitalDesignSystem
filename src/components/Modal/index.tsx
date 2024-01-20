@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import PropTypes, { bool, func, node, oneOf, string } from 'prop-types';
-import { Modal as BModal, Button } from 'react-bootstrap';
+import { Modal as BModal } from 'react-bootstrap';
+import { Button } from '../Button';
 import './modal.scss';
 
 const modalSize = {

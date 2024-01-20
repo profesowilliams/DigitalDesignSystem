@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdowns } from '../index';
+import { Dropdowns } from '../Dropdowns';
 
 export default {
   title: 'components/Dropdowns',
