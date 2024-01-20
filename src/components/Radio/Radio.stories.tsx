@@ -6,7 +6,7 @@ export default {
   title: 'components/Radio',
   component: Radio,
   argTypes: {
-        theme: {
+    theme: {
       options: ['light', 'dark'],
       control: { type: 'radio' },
     },
@@ -55,58 +55,73 @@ const Template: React.FC = (args) => {
 };
 
 export const Light = Template.bind({});
-Light.args = {
-  data,
-  inline: true
-};
+Object.assign(Light, {
+  args: {
+    data,
+    type: 'radio',
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
+});
 
 export const Dark = Template.bind({});
-Dark.args = {
-  data,
-  inline: true
-};
+Object.assign(Dark, {
+  args: {
+    data,
+    type: 'radio',
+  },
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+});
 
 export const Selected = Template.bind({});
 Selected.args = {
-    data: [
-      {
-        id: '1',
-        name: 'Selected',
-        checked: true,
-      },
-    ],  inline: true
+  theme: 'light',
+  data: [
+    {
+      id: '1',
+      name: 'Selected',
+      checked: true,
+    },
+  ],
+  inline: true,
 };
 
 export const DisabledSelected = Template.bind({});
 DisabledSelected.args = {
-    data: [
-      {
-        id: '1',
-        name: 'Selected',
-        disabled: true,
-      },
-    ],
-  inline: true
+  theme: 'light',
+  data: [
+    {
+      id: '1',
+      name: 'Selected',
+      disabled: true,
+    },
+  ],
+  inline: true,
 };
 
 export const Unselected = Template.bind({});
 Unselected.args = {
-    data: [
-      {
-        id: '2',
-        name: 'Unselected',
-      },
-    ],
+  theme: 'light',
+  data: [
+    {
+      id: '2',
+      name: 'Unselected',
+    },
+  ],
 };
 
 export const DisabledUnselected = Template.bind({});
 DisabledUnselected.args = {
-    data: [
-      {
-        id: '2',
-        name: 'Unselected',
-        disabled: true,
-        value: '',
-      },
+  theme: 'light',
+  data: [
+    {
+      id: '2',
+      name: 'Unselected',
+      disabled: true,
+      value: '',
+    },
   ],
 };

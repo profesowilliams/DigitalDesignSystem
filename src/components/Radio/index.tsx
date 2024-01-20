@@ -16,16 +16,17 @@ interface RadioProps {
   inline?: boolean;
   value?: string;
   onChange?: (id: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  theme: 'light' | 'dark'; // Add a theme prop
 }
 
-const Radio: React.FC<RadioProps> = ({ data = [], name = 'checkbox-group-name', inline = true, value = '', onChange = () => { }, ...props }) => {
+const Radio: React.FC<RadioProps> = ({ data = [], name = 'checkbox-group-name', inline = true, value = '', onChange = () => { }, theme, ...props }) => {
   const handleOnClick = useCallback((id: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(id, e);
   }, [onChange]);
 
   return (
-    <div className="mb-3">
-      {data.map(item => (
+    <div className="mb-3" data-bs-theme={theme}>
+      {data.map((item) => (
         <Form.Check
           key={item.id}
           id={item.id}
@@ -49,6 +50,7 @@ Radio.defaultProps = {
   inline: true,
   value: '',
   onChange: () => { },
+  theme: 'light', // Set default theme
 };
 
 Radio.propTypes = {
@@ -57,6 +59,7 @@ Radio.propTypes = {
   inline: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  theme: PropTypes.oneOf(['light', 'dark']), // Specify theme prop type
 };
 
 const TdsRadio = r2wc(Radio);

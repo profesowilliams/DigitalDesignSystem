@@ -8,7 +8,6 @@ export default {
   args: {
     variant: 'primary', // Default variant for the button
     size: 'sm', // Default size for the button
-    active: false,
     disabled: false,
     label: 'Button', // Default label for the button
   },
@@ -46,7 +45,6 @@ export default {
 interface ButtonProps {
   variant: typeof buttonVariant;
   size: string;
-  active: boolean;
   disabled: boolean;
   label: string;
 }
@@ -80,7 +78,6 @@ Primary.args = {
   theme: 'light',
   variant: 'primary',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Primary',
   parameters: {
@@ -106,7 +103,6 @@ Filled.args = {
   theme: 'light',
   variant: 'filled',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Filled',
   parameters: {
@@ -119,7 +115,6 @@ Tertiary.args = {
   theme: 'light',
   variant: 'tertiary',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Tertiary',
   parameters: {
@@ -132,7 +127,6 @@ Link.args = {
   theme: 'light',
   variant: 'link',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Link',
   parameters: {
@@ -145,7 +139,6 @@ Affirmative.args = {
   theme: 'light',
   variant: 'affirmative',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Affirmative',
   parameters: {
@@ -158,7 +151,6 @@ Destructive.args = {
   theme: 'light',
   variant: 'destructive',
   size: 'sm',
-  active: false,
   disabled: false,
   label: 'Destructive',
   parameters: {

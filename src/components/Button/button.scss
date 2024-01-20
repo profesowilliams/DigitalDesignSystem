@@ -507,14 +507,14 @@ button:not(:disabled) {
     background: #{map.get($color-palette, 'white')};
 
     &:hover {
-      color: #{map.get($color-palette, 'cherry')};
-      background: #{rgba(map.get($color-palette, 'cherry'), 0.85)};
+      @include set-opacity('color', map.get($color-palette, 'cherry'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.85);
       border: none;
     }
 
     &:active {
-      color: #{map.get($color-palette, 'cherry')};
-      background: #{rgba(map.get($color-palette, 'cherry'), 0.7)};
+      @include set-opacity('color', map.get($color-palette, 'cherry'), 1);
+      @include set-opacity('background', map.get($color-palette, 'white'), 0.7);
     }
 
     &:disabled {
