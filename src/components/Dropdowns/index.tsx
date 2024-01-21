@@ -1,99 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Dropdown as BDropdown } from 'react-bootstrap';
-import _find from 'lodash/find';
+import React, { useState, useRef } from 'react';
+import { Form } from 'react-bootstrap';
+import { TextField, TextFieldControl, TextFieldFeedback } from '../TextField';
+import { Hint, Typeahead } from 'react-bootstrap-typeahead';
+import './dropdown.scss';
 
-const { Toggle, Menu, Item } = BDropdown;
-
-const dropdownVariant = {
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  SUCCESS: 'success',
-  DANGER: 'danger',
-  WARNING: 'warning',
-  INFO: 'info',
-  DARK: 'dark',
-  LIGHT: 'light',
-  LINK: 'link',
-  OUTLINE_PRIMARY: 'outline-primary',
-  OUTLINE_SECONDARY: 'outline-secondary',
-  OUTLINE_SUCCESS: 'outline-success',
-  OUTLINE_DANGER: 'outline-danger',
-  OUTLINE_WARNING: 'outline-warning',
-  OUTLINE_INFO: 'outline-info',
-  OUTLINE_DARK: 'outline-dark',
-  OUTLINE_LIGHT: 'outline-light'
-};
-
-interface DropdownItem {
-  id: string;
-  name: string;
-  href: string;
+interface DropdownProps {
+  controlId: string;
+  label: string;
+  supporttext?: string;
+  required?: boolean;
+  data: string[];
+  multiple?: boolean;
+  size?: 'sm' | 'lg' | undefined; // Add the 'size' prop
 }
 
-interface DropdownsProps {
-  data: DropdownItem[];
-  defaultText: string;
-  value: string;
-  onChange: (value: string, event: React.MouseEvent<HTMLElement>) => void;
-  maxHeight: number | string;
-  variant?: keyof typeof dropdownVariant | undefined;
-}
-
-const Dropdowns: React.FC<DropdownsProps> = ({ data, defaultText, value, onChange, maxHeight, variant, ...props }) => {
-
-  const handleOnChange = (val: string) => (e: React.MouseEvent<HTMLElement>) => {
-    onChange(val, e);
-  }
-
-  let title = value && _find(data, item => item.id === value);
-
-  if (typeof title === 'object') {
-    title = title.name;
-  }
+const Dropdown: React.FC<DropdownProps> = ({ controlId, label, supporttext, required, data, multiple, size }) => {
+  const [selected, setSelected] = useState<string[]>([]);
 
   return (
-    <BDropdown {...props} >
-      <Toggle variant={variant}>
-        {title || defaultText}
-      </Toggle>
-
-      <Menu style={{ overflowY: 'auto', maxHeight }}>
-        {
-          data.map(item => (
-            <Item
-              key={item.id}
-              href={item.href}
-              id={item.id}
-              active={item.id === value}
-              onClick={handleOnChange(item.id)}
-            >
-              {item.name}
-            </Item>
-          ))
-        }
-      </Menu>
-    </BDropdown>
+    <Typeahead
+      id={controlId}
+      onChange={setSelected}
+      options={data}
+      placeholder={label}
+      multiple={multiple}
+      size={size} // Pass the 'size' prop to Typeahead
+      renderInput={({ inputRef, referenceElementRef, ...inputProps }) => (
+        <Hint>
+          <TextField controlId={controlId} label={label} required={required} style={{ height: '100px' }}>
+            <TextFieldControl
+              {...inputProps}
+              ref={(node) => {
+                inputRef(node);
+                referenceElementRef(node);
+              }}
+            />
+            {supporttext && <Form.Text className="text-muted">{supporttext}</Form.Text>}
+          </TextField>
+        </Hint>
+      )}
+      selected={selected}
+    />
   );
 };
 
-Dropdowns.defaultProps = {
-  data: [],
-  value: '',
-  defaultText: 'Select...',
-  maxHeight: 300,
-  variant: undefined,
-  onChange: () => { }
-};
-
-Dropdowns.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-  value: PropTypes.string,
-  defaultText: PropTypes.string,
-  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  variant: PropTypes.oneOf(Object.values(dropdownVariant)),
-  onChange: PropTypes.func,
-};
-
-export default Dropdowns;
-export { Dropdowns };
+export default Dropdown;

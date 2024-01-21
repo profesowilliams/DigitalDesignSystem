@@ -7,16 +7,7 @@ export default {
   argTypes: {},
 };
 
-const types = [
-  'primary',
-  'secondary',
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'light',
-  'dark',
-];
+const types = ['error', 'information', 'confirmation', 'alert'];
 
 const states = [
   'error',
@@ -27,7 +18,7 @@ const states = [
 
 export const Examples: React.FC = () => {
   return types.map((variant: string, idx: number) => (
-    <Notification key={idx} variant={variant}>
+    <Notification key={idx} variant={variant} onClose={() => setShow(false)} dismissible>
       This is a {variant} alert—check it out!
     </Notification>
   ));
@@ -43,6 +34,7 @@ export const Links: React.FC = () => {
   ));
 };
 
+/*
 export const Additionalcontent: React.FC = () => {
   return (
     <Notification variant="success">
@@ -85,7 +77,7 @@ export const Dismissingsuccess: React.FC = () => {
 
   return (
     <>
-      <Notification show={show} variant="success">
+      <Notification show={show} variant="error">
         <Notification.Heading>How's it going?!</Notification.Heading>
         <p>
           Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
@@ -104,3 +96,4 @@ export const Dismissingsuccess: React.FC = () => {
     </>
   );
 };
+*/

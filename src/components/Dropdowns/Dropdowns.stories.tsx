@@ -1,42 +1,31 @@
-import React, { useState } from 'react';
-import { Dropdowns } from '../Dropdowns';
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
+import Dropdown, { DropdownProps } from '../Dropdowns'; // Corrected import path and prop type
+import options from './data'; // Import options here
 
 export default {
-  title: 'components/Dropdowns',
-  component: Dropdowns,
-  argTypes: {},
-};
+  title: 'Components/Dropdown',
+  component: Dropdown,
+  argTypes: {
+    controlId: { control: 'text' },
+    label: { control: 'text' },
+    supporttext: { control: 'text' },
+    required: { control: 'boolean' },
+    data: { control: 'array' }, // Add 'data' prop to argTypes
+    multiple: { control: 'boolean' }, // Add 'multiple' prop to argTypes
+    size: { control: 'radio', options: ['sm', undefined, 'lg'] }, // Use undefined instead of 'default' for size options
+  },
+} as Meta;
 
-const data = [];
+const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 
-for (let i = 1; i < 20; i += 1) {
-  data.push({
-    id: 'id-' + i,
-    name: 'item ' + i,
-    href: '#',
-  });
-}
-
-interface DropdownsProps {
-  data: any[]; // Update with the appropriate data type for your 'data' array
-  value: string;
-  onChange: (value: string) => void;
-}
-
-const Template: React.FC<DropdownsProps> = (args) => {
-  const [value, setValue] = useState(args.value);
-
-  const handleValueChange = (newValue: string) => {
-    setValue(newValue);
-    args.onChange(newValue);
-  };
-
-  return <Dropdowns {...args} value={value} onChange={handleValueChange} />;
-};
-
-export const _Dropdowns = Template.bind({});
-_Dropdowns.args = {
-  data,
-  value: '',
-  onChange: (newValue: string) => console.log(newValue), // Update the handler as needed
+export const Default = Template.bind({});
+Default.args = {
+  controlId: 'floating-label-example',
+  label: 'Choose a state...',
+  supporttext: 'This is support text.',
+  required: true,
+  multiple: false,
+  data: options, // Pass the options data from './data' to 'data' prop
+  size: 'lg', // You can set size to 'sm', undefined, or 'lg'
 };

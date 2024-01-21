@@ -9,10 +9,7 @@ export * from './Dropdowns';
 export * from './Flyout'; /* offcanvas */
 // export * from './Hero';
 // export * from './Logo';
-// export * from './Form';
-export * from './InputSearch';
 export * from './Modal';
-export * from './Masthead'; /* navbars */
 export * from './Notification';
 export * from './Radio';
 // export * from './Slider';
@@ -23,27 +20,6 @@ export * from './Toast';
 export * from './TextField';
 export * from './Tooltip';
 
-export {
-  Form,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
-  Dropdown,
-  DropdownButton,
-  Container,
-  Navbar,
-  Nav,
-  NavDropdown,
-  OverlayTrigger,
-  ProgressBar,
-  Spinner,
-  Alert,
-  ButtonToolbar,
-  ButtonGroup,
-} from 'react-bootstrap';
+export { Form, Row, Col, InputGroup, FormControl, Dropdown, DropdownButton, Container, Navbar, Nav, NavDropdown, OverlayTrigger, ProgressBar, Spinner, Alert, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
 
-export {
-  yup,
-  formik,
-};
+export { yup, formik };
