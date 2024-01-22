@@ -12,6 +12,7 @@ interface CardProps {
   header?: ReactNode;
   title?: ReactNode;
   body?: ReactNode;
+  variant?: string;
 }
 
 const cardBgs = {
@@ -31,9 +32,9 @@ const cardTexts = {
   MUTED: 'muted',
 };
 
-const Card: React.FC<CardProps> = ({ width = '18rem', header, title, body, ...props }) => {
+const Card: React.FC<CardProps> = ({ width = '18rem', header, title, body, variant, ...props }) => {
   return (
-    <BCard border="primary" style={{ width }} {...props}>
+    <BCard border="primary" style={{ width }} variant={variant} {...props}>
       {header && <Header>{header}</Header>}
       <Body>
         {title && <Title>{title}</Title>}
