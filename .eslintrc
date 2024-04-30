@@ -9,6 +9,14 @@
   "env":{
     "browser": true
   },
+    "overrides": [
+    {
+      "files": ["tests/**/*"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "plugins": [
     "react",
     "jsx-a11y",

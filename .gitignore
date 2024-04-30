@@ -31,3 +31,7 @@ storybook-static
 *.bak
 
 storybook-build
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

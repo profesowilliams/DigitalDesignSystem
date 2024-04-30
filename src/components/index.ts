@@ -20,6 +20,8 @@ export * from './Toast';
 export * from './TextField';
 export * from './Tooltip';
 
-export { Form, Row, Col, InputGroup, FormControl, Dropdown, DropdownButton, Container, Navbar, Nav, NavDropdown, OverlayTrigger, ProgressBar, Spinner, Alert, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
+export {
+  Form, Row, Col, InputGroup, FormControl, Dropdown, DropdownButton, Container, Navbar, Nav, NavDropdown, OverlayTrigger, ProgressBar, Spinner, Alert, ButtonToolbar, ButtonGroup,
+} from 'react-bootstrap';
 
 export { yup, formik };

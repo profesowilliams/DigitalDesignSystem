@@ -22,13 +22,13 @@ export default [
             unsafe_arrows: true,
           },
         }),
-      ]
+      ],
     },
     plugins: [
-      del({ targets: 'build/*', }),
+      del({ targets: 'build/*' }),
       nodeResolve({
-        extensions: ['.css']
-      }) 
+        extensions: ['.css'],
+      }),
     ],
-  }
+  },
 ];

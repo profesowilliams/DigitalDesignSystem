@@ -5,8 +5,12 @@ export default [
     capital: 'Montgomery',
     region: 'South',
   },
-  { label: 'Alaska', population: 710249, capital: 'Juneau', region: 'West' },
-  { label: 'Arizona', population: 6392307, capital: 'Phoenix', region: 'West' },
+  {
+    label: 'Alaska', population: 710249, capital: 'Juneau', region: 'West',
+  },
+  {
+    label: 'Arizona', population: 6392307, capital: 'Phoenix', region: 'West',
+  },
   {
     label: 'Arkansas',
     population: 2915958,
@@ -19,14 +23,18 @@ export default [
     capital: 'Sacramento',
     region: 'West',
   },
-  { label: 'Colorado', population: 5029324, capital: 'Denver', region: 'West' },
+  {
+    label: 'Colorado', population: 5029324, capital: 'Denver', region: 'West',
+  },
   {
     label: 'Connecticut',
     population: 3574118,
     capital: 'Hartford',
     region: 'Northeast',
   },
-  { label: 'Delaware', population: 897936, capital: 'Dover', region: 'South' },
+  {
+    label: 'Delaware', population: 897936, capital: 'Dover', region: 'South',
+  },
   {
     label: 'Florida',
     population: 18804623,
@@ -39,8 +47,12 @@ export default [
     capital: 'Atlanta',
     region: 'South',
   },
-  { label: 'Hawaii', population: 1360301, capital: 'Honolulu', region: 'West' },
-  { label: 'Idaho', population: 1567652, capital: 'Boise', region: 'West' },
+  {
+    label: 'Hawaii', population: 1360301, capital: 'Honolulu', region: 'West',
+  },
+  {
+    label: 'Idaho', population: 1567652, capital: 'Boise', region: 'West',
+  },
   {
     label: 'Illinois',
     population: 12831549,
@@ -119,7 +131,9 @@ export default [
     capital: 'Jefferson City',
     region: 'Midwest',
   },
-  { label: 'Montana', population: 989417, capital: 'Alberta', region: 'West' },
+  {
+    label: 'Montana', population: 989417, capital: 'Alberta', region: 'West',
+  },
   {
     label: 'Nebraska',
     population: 1826341,
@@ -180,7 +194,9 @@ export default [
     capital: 'Oklahoma City',
     region: 'South',
   },
-  { label: 'Oregon', population: 3831073, capital: 'Salem', region: 'West' },
+  {
+    label: 'Oregon', population: 3831073, capital: 'Salem', region: 'West',
+  },
   {
     label: 'Pennsylvania',
     population: 12702887,
@@ -211,7 +227,9 @@ export default [
     capital: 'Nashville',
     region: 'South',
   },
-  { label: 'Texas', population: 25146105, capital: 'Austin', region: 'South' },
+  {
+    label: 'Texas', population: 25146105, capital: 'Austin', region: 'South',
+  },
   {
     label: 'Utah',
     population: 2763888,
@@ -248,5 +266,7 @@ export default [
     capital: 'Madison',
     region: 'West',
   },
-  { label: 'Wyoming', population: 563767, capital: 'Cheyenne', region: 'West' },
+  {
+    label: 'Wyoming', population: 563767, capital: 'Cheyenne', region: 'West',
+  },
 ];

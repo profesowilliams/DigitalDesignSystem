@@ -34,7 +34,7 @@ const Template: React.FC<TemplateProps> = (args) => {
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Example textarea</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="testing"/>
+        <Form.Control as="textarea" rows={3} placeholder="testing" />
       </Form.Group>
     </Form>
   );
