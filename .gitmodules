@@ -1,0 +1,3 @@
+[submodule "src"]
+	path = src
+	url = git@ssh.dev.azure.com:v3/techdatacorp/WW%20Digital%20Commerce/ReactComponents
