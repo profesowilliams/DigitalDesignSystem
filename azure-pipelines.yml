@@ -34,6 +34,7 @@ stages:
         # List of steps
         steps:
           - checkout: self
+            submodules: true
             displayName: 'Get full Git history'
             fetchDepth: 0
           # 👇 Installs and configures Node environment
