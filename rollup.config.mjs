@@ -10,6 +10,8 @@ import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 import typescriptEngine from 'typescript';
+import del from 'rollup-plugin-delete';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const packageJson = JSON.parse(readFileSync('./package.json'));
 
@@ -18,25 +20,21 @@ export default defineConfig(
     input: './src/index.ts',
     output: [
       {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: false,
+        file: './build/clientlib-webcomponents.js',
+        format: 'esm',
+        sourcemap: true,
         exports: 'named',
         name: packageJson.name,
       },
-      {
-        file: packageJson.module,
-        format: 'es',
-        exports: 'named',
-        sourcemap: false,
-      },
     ],
     plugins: [
+      del({ targets: 'build/*' }),
+      nodeResolve(),
       postcss({
         plugins: [],
         minimize: true,
       }),
-      external({ includeDependencies: true }),
+      external({ includeDependencies: false }),
       resolve(),
       commonjs(),
       typescript({
@@ -63,17 +61,13 @@ export default defineConfig(
           '**/*.stories.js+(|x)',
           'setupTests.ts',
           'vitest.config.ts',
+          'vite.config.ts',
+          'playwright.config.ts',
         ],
       }),
       url(),
       svgr(),
       terser(),
     ],
-  },
-  {
-    input: 'dist/esm/types/src/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    external: [/\.(sc|sa|c)ss$/],
-    plugins: [dts()],
   },
 );
