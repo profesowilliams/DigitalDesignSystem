@@ -39,7 +39,7 @@ stages:
           # 👇 Installs and configures Node environment
           - task: NodeTool@0
             inputs:
-              versionSpec: '16.x'
+              versionSpec: '20.x'
             displayName: 'Install Node.js'
           - task: Cache@2
             displayName: Install and cache packages
@@ -55,6 +55,6 @@ stages:
             displayName: Publish to Chromatic
             inputs:
               # 👇 Runs Chromatic
-              script: npx chromatic --auto-accept-changes
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN)

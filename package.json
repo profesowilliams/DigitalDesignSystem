@@ -16,7 +16,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:deploy": "yarn storybook:build && touch ./storybook-static/.nojekyll && gh-pages -d ./storybook-static -t true",
-    "chromatic": "npx chromatic --build-script-name storybook:build",
+    "chromatic": "npx chromatic",
     "test": "jest",
     "test:storybook": "start-storybook -p 6006 & jest",
     "rollup": "npx rollup --config rollup.config.mjs"
