@@ -1,26 +1,34 @@
-export default {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+// .storybook/main.ts
 
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', '@storybook/addon-a11y', '@storybook/addon-storyshots'],
+import { StorybookConfig } from '@storybook/html-vite';
 
-  framework: {
-    name: '@storybook/react-vite',
-    options: {
-      builder: {
-        useSWC: true,
-      },
+const config: StorybookConfig = {
+  stories: [
+    "../src/stories/html/**/*.mdx",
+    "../src/stories/html/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  refs: {
+    lit: {
+      title: "Lit",
+      url: "http://localhost:6008/",
+      expanded: false, // Optional, true by default
+    },
+    react: {
+      title: "React",
+      url: "http://localhost:6007/",
+      expanded: false, // Optional, true by default
     },
   },
-  core: {
-    builder: '@storybook/builder-vite',
-  },
-
-  features: {
-    storyStoreV7: true,
-  },
-
-  docs: {
-    autodocs: true,
-    toc: true,
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@chromatic-com/storybook",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/html-vite",
+    options: {},
   },
 };
+
+export default config;

@@ -1,6 +1,7 @@
-// .storybook/preview.ts
+// import "../../src/scss/global.scss";
+import '../../src/css/global.css';
 
-import { Preview } from '@storybook/html';
+import type { Preview } from "@storybook/web-components";
 
 const preview: Preview = {
   parameters: {
