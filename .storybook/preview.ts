@@ -29,20 +29,19 @@ const preview: Preview = {
 
 const channel = addons.getChannel();
 
-const setGlobalTheme = (globals) => {
-  const currentBackground = globals.backgrounds?.value;
-  const theme = currentBackground === '#000c21' ? 'dark' : 'light';
-
-  channel.emit(UPDATE_GLOBALS, {
-    globals: {
-      ...globals,
-      theme: theme,
-    },
-  });
-};
-
 const storyListener = (args) => {
-  setGlobalTheme(args.globals);
+  if (args.args.theme) {
+    const theme = args.args.theme;
+    channel.emit(UPDATE_GLOBALS, {
+      globals: {
+        theme: theme,
+        backgrounds: {
+          name: theme === 'dark' ? 'dark' : 'light',
+          value: theme === 'dark' ? '#000c21' : '#FFFFFF',
+        },
+      },
+    });
+  }
 };
 
 function setupBackgroundListener() {
@@ -50,12 +49,7 @@ function setupBackgroundListener() {
   channel.addListener(STORY_ARGS_UPDATED, storyListener);
 }
 
-function setupGlobalsListener() {
-  channel.removeListener(GLOBALS_UPDATED, storyListener);
-  channel.addListener(GLOBALS_UPDATED, storyListener);
-}
-
 setupBackgroundListener();
-setupGlobalsListener();
 
 export default preview;
+

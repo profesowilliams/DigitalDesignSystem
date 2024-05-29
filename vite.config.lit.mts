@@ -1,8 +1,9 @@
-const path = require('path');
-const { defineConfig } = require('vite');
+import path from 'path';
+import { defineConfig } from 'vite';
 
-module.exports = defineConfig({
+export default defineConfig({
   build: {
+    chunkSizeWarningLimit: 1000, // Adjust this value as needed
     rollupOptions: {
       external: ['bootstrap'],
       input: {
@@ -11,7 +12,7 @@ module.exports = defineConfig({
       output: [
         {
           dir: 'dist/lit',
-          format: 'es',
+          format: 'umd',
           entryFileNames: 'lit.js',
         },
       ],

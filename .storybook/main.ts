@@ -4,9 +4,9 @@ import { StorybookConfig } from '@storybook/html-vite';
 
 const config: StorybookConfig = {
   stories: [
-    "../src/stories/html/**/*.mdx",
     "../src/stories/html/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+
   refs: {
     lit: {
       title: "Lit",
@@ -19,16 +19,20 @@ const config: StorybookConfig = {
       expanded: false, // Optional, true by default
     },
   },
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
   ],
+
   framework: {
     name: "@storybook/html-vite",
     options: {},
   },
+
+  docs: {}
 };
 
 export default config;

@@ -26,7 +26,7 @@ stages:
     displayName: Chromatic Testing
     # Job list
     jobs:
-      - job: Chromatic_Deploy
+      - job: Chromatic_Deploy_1
         displayName: Install packages and publishes to Chromatic
         variables:
           # Sets scoped environment variable to cache packages
@@ -57,6 +57,40 @@ stages:
             displayName: Publish to Chromatic
             inputs:
               # 👇 Runs Chromatic
-              script: npx chromatic --auto-accept-changes --build-script-name storybook:build
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:lit
             env:
-              CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN)
+              CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_1)
+      - job: Chromatic_Deploy_2
+              displayName: Install packages and publishes to Chromatic
+              variables:
+                # Sets scoped environment variable to cache packages
+                npm_config_cache: $(Pipeline.Workspace)/.npm
+              # List of steps
+              steps:
+                - checkout: self
+                  submodules: true
+                  persistCredentials: true
+                  displayName: 'Get full Git history'
+                  fetchDepth: 0
+                # 👇 Installs and configures Node environment
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: '20.x'
+                  displayName: 'Install Node.js'
+                - task: Cache@2
+                  displayName: Install and cache packages
+                  inputs:
+                    key: 'npm | "$(Agent.OS)" | package-lock.json'
+                    restoreKeys: |
+                      npm | "$(Agent.OS)"
+                    path: $(npm_config_cache)
+                - script: npm ci
+                  condition: ne(variables.CACHE_RESTORED, 'true')
+                  # 👇 Adds Chromatic as a step
+                - task: CmdLine@2
+                  displayName: Publish to Chromatic
+                  inputs:
+                    # 👇 Runs Chromatic
+                    script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react
+                  env:
+                    CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_2)
