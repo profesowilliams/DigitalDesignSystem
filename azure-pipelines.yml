@@ -37,6 +37,21 @@ stages:
             displayName: 'Get full Git history'
             fetchDepth: 0
 
+          # 👇 Installs and configures Node environment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+          - task: Cache@2
+            displayName: Install and cache packages
+            inputs:
+              key: 'npm | "$(Agent.OS)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+          - script: npm ci
+            condition: ne(variables.CACHE_RESTORED, 'true')
+
           # 👇 Adds Chromatic as a step in the pipeline
           - task: CmdLine@2
             displayName: 'Run Chromatic'
@@ -55,6 +70,21 @@ stages:
             displayName: 'Get full Git history'
             fetchDepth: 0
 
+          # 👇 Installs and configures Node environment
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+          - task: Cache@2
+            displayName: Install and cache packages
+            inputs:
+              key: 'npm | "$(Agent.OS)" | package-lock.json'
+              restoreKeys: |
+                npm | "$(Agent.OS)"
+              path: $(npm_config_cache)
+          - script: npm ci
+            condition: ne(variables.CACHE_RESTORED, 'true')
+            
           # 👇 Adds Chromatic as a step in the pipeline
           - task: CmdLine@2
             displayName: 'Run Chromatic'
