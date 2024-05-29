@@ -42,7 +42,7 @@ stages:
             displayName: 'Run Chromatic'
             inputs:
               #👇Runs Chromatic with the flag to prevent pipeline failure
-              script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build:lit
+              script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build-lit
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_1)
       - job: Chromatic_Deploy_2
@@ -60,6 +60,6 @@ stages:
             displayName: 'Run Chromatic'
             inputs:
               #👇Runs Chromatic with the flag to prevent pipeline failure
-              script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build:react
+              script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build-react
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_2)
