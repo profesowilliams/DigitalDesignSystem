@@ -23,30 +23,41 @@ pr:
 # Pipeline stages
 stages:
   - stage: Test
-    displayName: Chromatic Testing
-     # Job list
+    displayName:
+      Chromatic Testing
+      # Job list
     jobs:
       - job: Chromatic_Deploy_1
-        displayName: "Run Chromatic"
+        displayName: 'Run Chromatic'
         steps:
           # Other steps in the pipeline
+          - checkout: self
+            submodules: true
+            persistCredentials: true
+            displayName: 'Get full Git history'
+            fetchDepth: 0
 
           # 👇 Adds Chromatic as a step in the pipeline
           - task: CmdLine@2
-            displayName: "Run Chromatic"
+            displayName: 'Run Chromatic'
             inputs:
               #👇Runs Chromatic with the flag to prevent pipeline failure
               script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build:lit
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_1)
       - job: Chromatic_Deploy_2
-        displayName: "Run Chromatic"
+        displayName: 'Run Chromatic'
         steps:
           # Other steps in the pipeline
+          - checkout: self
+            submodules: true
+            persistCredentials: true
+            displayName: 'Get full Git history'
+            fetchDepth: 0
 
           # 👇 Adds Chromatic as a step in the pipeline
           - task: CmdLine@2
-            displayName: "Run Chromatic"
+            displayName: 'Run Chromatic'
             inputs:
               #👇Runs Chromatic with the flag to prevent pipeline failure
               script: npx chromatic --exit-zero-on-changes --auto-accept-changes --build-script-name storybook:build:react
