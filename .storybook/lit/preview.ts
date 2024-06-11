@@ -1,7 +1,6 @@
 import { addons } from '@storybook/preview-api';
 import { UPDATE_GLOBALS, STORY_ARGS_UPDATED } from '@storybook/core-events';
 import '../../src/scss/global.scss';
-// import '../../src/css/global.css';
 
 import type { Preview } from '@storybook/web-components';
 

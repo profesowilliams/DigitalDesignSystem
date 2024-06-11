@@ -1,3 +1,8 @@
+// import '../dist/lit/lit.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../dist/lit/components.js'; // Ensure this path is correct
+import '../dist/lit/lit.min.css'; // Ensure this path is correct
+
 import { addons } from '@storybook/preview-api';
 import { UPDATE_GLOBALS, STORY_ARGS_UPDATED, GLOBALS_UPDATED } from '@storybook/core-events';
 
@@ -25,6 +30,8 @@ const preview: Preview = {
       ],
     },
   },
+
+  tags: ['autodocs']
 };
 
 const channel = addons.getChannel();
@@ -52,4 +59,3 @@ function setupBackgroundListener() {
 setupBackgroundListener();
 
 export default preview;
-
