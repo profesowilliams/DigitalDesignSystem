@@ -1,7 +1,12 @@
 import { addons } from '@storybook/preview-api';
 import { UPDATE_GLOBALS, STORY_ARGS_UPDATED } from '@storybook/core-events';
 import { Preview } from '@storybook/react';
-import '../../src/css/global.css';
+
+import '../../src/scss/index.scss';
+
+import './docs-root.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const preview: Preview = {
   parameters: {

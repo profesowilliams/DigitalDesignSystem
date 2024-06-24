@@ -1,11 +1,26 @@
-import type { StorybookConfig } from "@storybook/web-components-vite";
+import type { StorybookConfig } from '@storybook/web-components-vite';
 
 const config: StorybookConfig = {
-  stories: ['../../src/components/lit/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@chromatic-com/storybook', '@storybook/addon-a11y'],
+  stories: ['../../src/components/lit/**/*.mdx', '../../src/components/lit/**/*.stories.@(js|jsx|mdx|mjs|ts|tsx)', '../../src/pages/lit/**/*.stories.@(js|jsx|mdx|mjs|ts|tsx)', '../../src/compositions/lit/**/*.stories.@(js|jsx|mdx|mjs|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@chromatic-com/storybook',
+    '@storybook/addon-interactions',
+    '@storybook/addon-a11y',
+    // Other Storybook addons
+    {
+      name: '@chromatic-com/storybook',
+      options: {
+        //👇 Loads the configuration file based on the current environment
+        configFile: process.env.NODE_ENV === 'development' ? 'chromatic.config.lit.json' : 'production.config.lit.json',
+      },
+    },
+  ],
   framework: {
     name: '@storybook/web-components-vite',
     options: {},
   },
+  staticDirs: [{ from: '../../src/shared', to: '/content/dam/global-shared/' }],
 };
 export default config;

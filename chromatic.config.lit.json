@@ -1,0 +1,7 @@
+{
+  "buildScriptName": "storybook:build:lit",
+  "onlyChanged": true,
+  "projectId": "Project:66567545aed96b4267fc8666",
+  "storybookConfigDir": ".storybook/lit",
+  "zip": true
+}

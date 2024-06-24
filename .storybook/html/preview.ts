@@ -1,7 +1,11 @@
 // import '../dist/lit/lit.js';
+import webcomponentsTheme from './theme.ts';
+
+import './docs-root.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../dist/lit/components.js'; // Ensure this path is correct
-import '../dist/lit/lit.min.css'; // Ensure this path is correct
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../../dist/components.js';
+import '../../dist/components.css';
 
 import { addons } from '@storybook/preview-api';
 import { UPDATE_GLOBALS, STORY_ARGS_UPDATED, GLOBALS_UPDATED } from '@storybook/core-events';
@@ -29,9 +33,14 @@ const preview: Preview = {
         },
       ],
     },
+    docs: {
+      theme: webcomponentsTheme, // override the default Storybook theme with a custom fluent theme
+      source: {
+        excludeDecorators: true,
+        type: 'source',
+      },
+    },
   },
-
-  tags: ['autodocs']
 };
 
 const channel = addons.getChannel();

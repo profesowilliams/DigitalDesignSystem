@@ -1,30 +1,56 @@
 import path from 'path';
 import { defineConfig } from 'vite';
+import terser from '@rollup/plugin-terser';
 
-export default defineConfig({
+// Common configuration
+const commonConfig = {
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
+      external: ['bootstrap'],
       input: {
-        main: path.resolve(__dirname, 'src/components/Lit/index.ts'),
+        lit: path.resolve(__dirname, 'src/components/Lit/index.ts'),
       },
-      output: {
-        dir: 'dist/resources',
-        format: 'es',
-        entryFileNames: 'components.js',
-        chunkFileNames: '[name].js',
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
-          if (id.includes('components')) {
-            const componentName = id.split('/').slice(-2, -1)[0];
-            return `${componentName}`;
-          }
+      output: [
+        {
+          dir: 'dist',
+          format: 'iife',
+          entryFileNames: 'components.js',
         },
-      },
+      ],
     },
-    outDir: 'dist/lit/components',
+    outDir: 'dist/lit',
     emptyOutDir: true,
   },
+};
+
+// Development configuration
+const devConfig = {
+  ...commonConfig,
+  build: {
+    ...commonConfig.build,
+    sourcemap: true,
+    minify: false,
+  },
+};
+
+// Production configuration
+const prodConfig = {
+  ...commonConfig,
+  build: {
+    ...commonConfig.build,
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      ...commonConfig.build.rollupOptions,
+      plugins: [terser()],
+    },
+  },
+};
+
+export default defineConfig(({ mode }) => {
+  if (mode === 'development') {
+    return devConfig;
+  }
+  return prodConfig;
 });
