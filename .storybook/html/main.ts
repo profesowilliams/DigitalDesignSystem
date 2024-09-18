@@ -2,7 +2,7 @@
 import { StorybookConfig } from '@storybook/html-vite';
 
 const config: StorybookConfig = {
-  stories: ['../../src/pages/html/**/*.mdx', '../../src/pages/html/**/*.stories.@(js|jsx|mdx|mjs|ts|tsx)'],
+  stories: ['../../src/pages/html/**/*.mdx', '../../src/pages/html/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))'],
   refs: {
     lit: {
       title: 'Lit',
@@ -16,7 +16,11 @@ const config: StorybookConfig = {
     },
   },
 
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-mdx-gfm',
+  ],
 
   framework: {
     name: '@storybook/html-vite',

@@ -41,6 +41,8 @@ const preview: Preview = {
       },
     },
   },
+
+  tags: ['autodocs']
 };
 
 const channel = addons.getChannel();
