@@ -103,6 +103,8 @@
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-typescript": "^7.24.1",
     "@chromatic-com/storybook": "^2.0.2",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@lit/react": "^1.0.5",
     "@open-wc/testing": "^2.5.33",
