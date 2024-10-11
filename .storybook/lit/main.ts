@@ -17,7 +17,6 @@ const config: StorybookConfig = {
         configFile: process.env.NODE_ENV === 'development' ? 'chromatic.config.lit.json' : 'production.config.lit.json',
       },
     },
-    '@storybook/addon-mdx-gfm'
   ],
 
   framework: {

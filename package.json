@@ -120,7 +120,6 @@
     "@storybook/addon-essentials": "^8.3.1",
     "@storybook/addon-interactions": "^8.3.1",
     "@storybook/addon-links": "^8.3.1",
-    "@storybook/addon-mdx-gfm": "^8.3.1",
     "@storybook/addon-onboarding": "^8.3.1",
     "@storybook/blocks": "^8.3.1",
     "@storybook/html": "^8.3.1",

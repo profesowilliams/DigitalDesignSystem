@@ -19,7 +19,6 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-mdx-gfm',
   ],
 
   framework: {
