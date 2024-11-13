@@ -11,13 +11,11 @@ const commonConfig = {
       input: {
         lit: path.resolve(__dirname, 'src/components/Lit/index.ts'),
       },
-      output: [
-        {
-          dir: 'dist',
-          format: 'iife',
-          entryFileNames: 'components.js',
-        },
-      ],
+      output: {
+        dir: 'dist',
+        format: 'iife', // Use a specific format like 'iife' instead of a generic string
+        entryFileNames: 'components.js',
+      },
     },
     outDir: 'dist/lit',
     emptyOutDir: true,
@@ -41,6 +39,12 @@ const prodConfig = {
     ...commonConfig.build,
     sourcemap: false,
     minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove all console.* statements
+        drop_debugger: true, // Optional: Remove debugger statements too
+      },
+    },
     rollupOptions: {
       ...commonConfig.build.rollupOptions,
       plugins: [terser()],
