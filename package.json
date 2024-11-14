@@ -15,6 +15,7 @@
     "stylelint:fix": "stylelint \"**/*.{css,scss,sass}\" --fix",
     "check-types": "tsc --noEmit true",
     "ci": "yarn lint && yarn test --watch=false",
+    "generate-docs": "documentation build src -f html -o docs",
     "start": "NODE_ENV=development BABEL_ENV=development yarn storybook",
     "test": "wtr --config web-test-runner.config.mjs",
     "test:watch": "wtr --config web-test-runner.config.mjs --node-resolve --watch",
@@ -48,7 +49,7 @@
   "engineStrict": true,
   "engines": {
     "npm": ">=10.0.0",
-    "node": ">=22.0.0"
+    "node": ">=22.11.0"
   },
   "browserslist": {
     "production": [
@@ -130,6 +131,7 @@
     "@storybook/web-components-vite": "^8.4.2",
     "@svgr/rollup": "^8.1.0",
     "@types/mocha": "^10.0.6",
+    "@types/react": "^18.3.12",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
     "@web/dev-server-esbuild": "^1.0.2",
@@ -144,6 +146,7 @@
     "clsx": "^2.1.0",
     "concurrently": "^8.2.2",
     "datalist-polyfill": "^1.25.1",
+    "documentation": "^14.0.3",
     "esbuild": "^0.21.4",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -164,6 +167,7 @@
     "stylelint": "^16.6.0",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-config-standard-scss": "^9.0.0",
+    "ts-patch": "^3.2.1",
     "typescript": "^5.4.5",
     "vite": "^5.2.0",
     "vitest": "^0.34.6",
