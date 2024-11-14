@@ -107,6 +107,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@floating-ui/dom": "^1.6.12",
     "@lit/react": "^1.0.5",
     "@open-wc/testing": "^2.5.33",
     "@playwright/test": "^1.44.1",
