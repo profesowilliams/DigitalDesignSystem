@@ -93,6 +93,7 @@
     "rollup-plugin-summary": "^2.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "terser": "^5.31.1",
+    "uuid": "^11.0.3",
     "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
