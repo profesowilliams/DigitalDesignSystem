@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "chromatic": "npm run chromatic:lit && npm run chromatic:react",
-    "chromatic:lit": "npx @dotenvx/dotenvx run -- npx chromatic --build-script-name storybook:build:lit --config chromatic.config.lit.json --project-token $CHROMATIC_PROJECT_TOKEN_1",
-    "chromatic:react": "npx @dotenvx/dotenvx run -- npx chromatic --build-script-name storybook:build:react --config chromatic.config.react.json --project-token $CHROMATIC_PROJECT_TOKEN_2",
+    "chromatic:lit": "npx @dotenvx/dotenvx run -- npx chromatic --auto-accept-changes --debug --build-script-name storybook:build:lit --config chromatic.config.lit.json --project-token $CHROMATIC_PROJECT_TOKEN_1",
+    "chromatic:react": "npx @dotenvx/dotenvx run -- npx chromatic --auto-accept-changes --debug --build-script-name storybook:build:react --config chromatic.config.react.json --project-token $CHROMATIC_PROJECT_TOKEN_2",
     "lint": "yarn check-types && yarn eslint && yarn stylelint",
     "lint:fix": "yarn eslint:fix && yarn stylelint:fix",
     "eslint": "eslint . --ext .js,.jsx,.tsx,.ts",
