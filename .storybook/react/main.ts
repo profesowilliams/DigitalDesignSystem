@@ -1,7 +1,7 @@
 import { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  stories: ['../../src/components/react/**/*.mdx', '../../src/components/react/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))', '../../src/pages/react/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))', '../../src/compositions/react/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))'],
+  stories: ['../../src/components/React/**/*.mdx', '../../src/components/React/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))', '../../src/pages/React/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))', '../../src/compositions/React/**/*.@(mdx|stories.@(js|jsx|mjs|ts|tsx))'],
 
   addons: [
     '@storybook/addon-links',
