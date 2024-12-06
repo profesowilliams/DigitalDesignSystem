@@ -43,11 +43,6 @@ stages:
             displayName: 'Install dependencies'
             condition: ne(variables.CACHE_RESTORED, 'true')
 
-          # 👇 Build Lit Storybook
-          - script: npm run storybook:build:lit
-            displayName: 'Build Lit Storybook'
-            condition: succeeded()
-
           # 👇 Run Chromatic for Lit
           - task: CmdLine@2
             displayName: 'Run Chromatic for Lit'
@@ -81,11 +76,6 @@ stages:
           - script: npm ci
             displayName: 'Install dependencies'
             condition: ne(variables.CACHE_RESTORED, 'true')
-
-          # 👇 Build React Storybook
-          - script: npm run storybook:build:react
-            displayName: 'Build React Storybook'
-            condition: succeeded()
 
           # 👇 Run Chromatic for React
           - task: CmdLine@2
