@@ -1,47 +1,33 @@
-# azure-pipelines.yml
-
-# 👇 Event to trigger pipeline execution
 trigger:
   branches:
     include:
       - main
       - develop
-    # exclude:
-    #  - develop # 👈 Excludes the develop branch
 
-# 👇 Configures pipeline execution on pull requests
 pr:
   branches:
     include:
-      - main # 👈 Filters the execution to run only on the pull requests for the main branch
+      - main
       - develop
-    # exclude:
-    #  - develop # 👈 Excludes the pull requests for the develop branch
 
-# Other configurations
-
-# Pipeline stages
 stages:
   - stage: Test
-    displayName:
-      Chromatic Testing
-      # Job list
+    displayName: Chromatic Testing
     jobs:
       - job: Chromatic_Deploy_1
-        displayName: 'Run Chromatic'
+        displayName: 'Run Chromatic for Lit'
         steps:
-          # Other steps in the pipeline
           - checkout: self
             submodules: true
             persistCredentials: true
             displayName: 'Get full Git history'
             fetchDepth: 0
 
-          # 👇 Installs and configures Node environment
           - task: NodeTool@0
             inputs:
               versionSpec: '20.x'
             displayName: 'Install Node.js'
+
           - task: Cache@2
             displayName: Install and cache packages
             inputs:
@@ -49,32 +35,38 @@ stages:
               restoreKeys: |
                 npm | "$(Agent.OS)"
               path: $(npm_config_cache)
+
           - script: npm ci
+            displayName: 'Install dependencies'
             condition: ne(variables.CACHE_RESTORED, 'true')
 
-          # 👇 Adds Chromatic as a step in the pipeline
+          # 👇 Build Lit Storybook
+          - script: npm run storybook:build:lit
+            displayName: 'Build Lit Storybook'
+            condition: succeeded()
+
+          # 👇 Run Chromatic for Lit
           - task: CmdLine@2
-            displayName: 'Run Chromatic'
+            displayName: 'Run Chromatic for Lit'
             inputs:
-              #👇Runs Chromatic with the flag to prevent pipeline failure
-              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:lit  --storybook-build-dir .storybook-static/lit
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:lit --storybook-build-dir .storybook-static/lit
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_1)
+
       - job: Chromatic_Deploy_2
-        displayName: 'Run Chromatic'
+        displayName: 'Run Chromatic for React'
         steps:
-          # Other steps in the pipeline
           - checkout: self
             submodules: true
             persistCredentials: true
             displayName: 'Get full Git history'
             fetchDepth: 0
 
-          # 👇 Installs and configures Node environment
           - task: NodeTool@0
             inputs:
               versionSpec: '20.x'
             displayName: 'Install Node.js'
+
           - task: Cache@2
             displayName: Install and cache packages
             inputs:
@@ -82,14 +74,20 @@ stages:
               restoreKeys: |
                 npm | "$(Agent.OS)"
               path: $(npm_config_cache)
+
           - script: npm ci
+            displayName: 'Install dependencies'
             condition: ne(variables.CACHE_RESTORED, 'true')
 
-          # 👇 Adds Chromatic as a step in the pipeline
+          # 👇 Build React Storybook
+          - script: npm run storybook:build:react
+            displayName: 'Build React Storybook'
+            condition: succeeded()
+
+          # 👇 Run Chromatic for React
           - task: CmdLine@2
-            displayName: 'Run Chromatic'
+            displayName: 'Run Chromatic for React'
             inputs:
-              #👇Runs Chromatic with the flag to prevent pipeline failure
-              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react  --storybook-build-dir .storybook-static/react
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react --storybook-build-dir .storybook-static/react
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_2)
