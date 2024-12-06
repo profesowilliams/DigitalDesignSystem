@@ -49,7 +49,7 @@ stages:
           - task: CmdLine@2
             displayName: 'Run Chromatic for Lit'
             inputs:
-              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:lit --storybook-build-dir .storybook-static/lit
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:lit
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_1)
 
@@ -88,6 +88,6 @@ stages:
           - task: CmdLine@2
             displayName: 'Run Chromatic for React'
             inputs:
-              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react --storybook-build-dir .storybook-static/react
+              script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_2)
