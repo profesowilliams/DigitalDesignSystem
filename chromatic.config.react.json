@@ -2,7 +2,7 @@
   "buildScriptName": "storybook:build:react",
   "onlyChanged": true,
   "projectId": "Project:66567545aed96b4267fc8666",
+  "storybookBuildDir": ".storybook-static/react",
   "storybookConfigDir": ".storybook/react",
-  "storybookBaseDir": ".storybook/react",
   "zip": true
 }
