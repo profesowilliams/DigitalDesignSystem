@@ -20,7 +20,7 @@ stages:
           - checkout: self
             submodules: true
             persistCredentials: true
-            displayName: 'Get full Git history'
+            displayName: 'Get full Git history including submodules'
             fetchDepth: 0
 
           - task: NodeTool@0
@@ -57,7 +57,7 @@ stages:
           - checkout: self
             submodules: true
             persistCredentials: true
-            displayName: 'Get full Git history'
+            displayName: 'Get full Git history including submodules'
             fetchDepth: 0
 
           - task: NodeTool@0
@@ -84,3 +84,42 @@ stages:
               script: npx chromatic --auto-accept-changes --build-script-name storybook:build:react
             env:
               CHROMATIC_PROJECT_TOKEN: $(CHROMATIC_PROJECT_TOKEN_2)
+
+  - stage: Release
+    displayName: Semantic Release
+    dependsOn: Test
+    jobs:
+      - job: Semantic_Release
+        displayName: 'Run semantic-release with submodules'
+        steps:
+          - checkout: self
+            submodules: true
+            persistCredentials: true
+            displayName: 'Get full Git history including submodules'
+
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '22.x'
+            displayName: 'Install Node.js'
+
+          - script: npm ci
+            displayName: 'Install dependencies'
+
+          - script: |
+              #!/bin/bash
+              echo "Generating changelog for submodules"
+              > SUBMODULE_CHANGELOG.md # Create or reset the submodule changelog file
+
+              # Loop through all submodules and collect changelogs
+              for submodule in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
+                echo "## Changes in $submodule" >> SUBMODULE_CHANGELOG.md
+                git -C $submodule log --oneline --since="last week" >> SUBMODULE_CHANGELOG.md
+                echo "" >> SUBMODULE_CHANGELOG.md
+              done
+
+              # Append the submodule changelog to the main changelog
+              cat SUBMODULE_CHANGELOG.md >> CHANGELOG.md
+            displayName: 'Generate changelog for submodules'
+
+          - script: npx semantic-release --no-ci
+            displayName: 'Run semantic-release'
