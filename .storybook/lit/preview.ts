@@ -30,9 +30,23 @@ const preview: Preview = {
         },
       ],
     },
+    html: {
+      root: '#root-inner',
+      removeComments: true,
+      removeEmptyComments: true,
+      prettier: {
+        tabWidth: 4,
+        useTabs: false,
+        htmlWhitespaceSensitivity: 'strict',
+      },
+      highlighter: {
+        showLineNumbers: true, // default: false
+        wrapLines: false, // default: true
+      },
+    },
   },
 
-  tags: ['autodocs', 'autodocs']
+  tags: ['autodocs'],
 };
 
 const channel = addons.getChannel();

@@ -9,7 +9,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    // Other Storybook addons
+    '@whitespace/storybook-addon-html',
     {
       name: '@chromatic-com/storybook',
       options: {
@@ -26,6 +26,6 @@ const config: StorybookConfig = {
 
   staticDirs: [{ from: '../../src/shared', to: '/content/dam/global-shared/' }],
 
-  docs: {}
+  docs: {},
 };
 export default config;
